@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="teamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2de8ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="teamGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Grupo de personas -->
+  <g transform="translate(60, 60)">
+    <!-- Persona central -->
+    <circle cx="0" cy="-5" r="12" fill="url(#teamGrad)" opacity="0.8" filter="url(#teamGlow)"/>
+    <path d="M-15 15 Q-15 0 0 0 Q15 0 15 15 L10 25 L-10 25 Z" fill="url(#teamGrad)" opacity="0.6"/>
+    
+    <!-- Persona izquierda -->
+    <circle cx="-25" cy="5" r="10" fill="#7d5bff" opacity="0.6"/>
+    <path d="M-35 20 Q-35 10 -25 10 Q-15 10 -15 20 L-18 28 L-32 28 Z" fill="#7d5bff" opacity="0.4"/>
+    
+    <!-- Persona derecha -->
+    <circle cx="25" cy="5" r="10" fill="#2de8ff" opacity="0.6"/>
+    <path d="M15 20 Q15 10 25 10 Q35 10 35 20 L32 28 L18 28 Z" fill="#2de8ff" opacity="0.4"/>
+  </g>
+  
+  <!-- Conexiones -->
+  <line x1="35" y1="65" x2="60" y2="55" stroke="#7d5bff" stroke-width="2" opacity="0.4" stroke-dasharray="3 3"/>
+  <line x1="85" y1="65" x2="60" y2="55" stroke="#2de8ff" stroke-width="2" opacity="0.4" stroke-dasharray="3 3"/>
+</svg>

@@ -1,0 +1,41 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="authGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2de8ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="authGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Candado -->
+  <rect x="70" y="95" width="60" height="70" rx="10" fill="url(#authGrad)" opacity="0.3" filter="url(#authGlow)"/>
+  <rect x="75" y="100" width="50" height="60" rx="8" stroke="url(#authGrad)" stroke-width="3" fill="none" opacity="0.8"/>
+  
+  <!-- Arco del candado -->
+  <path d="M85 95 L85 70 C85 52 100 45 115 45 C130 45 115 52 115 70 L115 95" 
+        stroke="url(#authGrad)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#authGlow)"/>
+  
+  <!-- Cerradura -->
+  <circle cx="100" cy="125" r="8" fill="#2de8ff" opacity="0.8" filter="url(#authGlow)"/>
+  <rect x="97" y="128" width="6" height="15" rx="3" fill="#2de8ff" opacity="0.8"/>
+  
+  <!-- Partículas de seguridad -->
+  <circle cx="50" cy="80" r="3" fill="#7d5bff" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="150" cy="90" r="3" fill="#2de8ff" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="60" cy="140" r="2.5" fill="#ff5faa" opacity="0.5">
+    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="140" cy="150" r="2.5" fill="#7d5bff" opacity="0.5">
+    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

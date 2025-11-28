@@ -1,0 +1,29 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="secGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2de8ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="secGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Escudo de seguridad -->
+  <path d="M60 10 L95 25 L95 60 C95 82 80 98 60 105 C40 98 25 82 25 60 L25 25 Z" 
+        stroke="url(#secGrad)" stroke-width="3" fill="none" opacity="0.3"/>
+  <path d="M60 15 L90 28 L90 60 C90 79 77 93 60 99 C43 93 30 79 30 60 L30 28 Z" 
+        stroke="url(#secGrad)" stroke-width="2.5" fill="url(#secGrad)" opacity="0.15"/>
+  
+  <!-- Check mark -->
+  <path d="M45 60 L55 70 L78 45" 
+        stroke="#2de8ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" 
+        fill="none" filter="url(#secGlow)"/>
+  
+  <!-- Puntos decorativos -->
+  <circle cx="60" cy="60" r="25" stroke="#7d5bff" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="3 3"/>
+</svg>

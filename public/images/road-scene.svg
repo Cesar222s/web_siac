@@ -1,0 +1,84 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="roadGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d2738;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#141c2b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2de8ff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:0.2" />
+    </linearGradient>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Cielo -->
+  <rect width="600" height="250" fill="url(#skyGrad)"/>
+  
+  <!-- Montañas de fondo -->
+  <path d="M0 200 L150 120 L250 180 L350 140 L450 190 L600 150 L600 250 L0 250 Z" fill="#1d2738" opacity="0.4"/>
+  <path d="M0 220 L100 160 L200 200 L300 170 L400 210 L500 180 L600 200 L600 250 L0 250 Z" fill="#26344a" opacity="0.6"/>
+  
+  <!-- Carretera -->
+  <rect x="0" y="250" width="600" height="150" fill="url(#roadGrad2)"/>
+  
+  <!-- Líneas de carretera -->
+  <rect x="40" y="315" width="70" height="5" fill="#fff" opacity="0.3" rx="2.5"/>
+  <rect x="150" y="315" width="70" height="5" fill="#fff" opacity="0.3" rx="2.5"/>
+  <rect x="260" y="315" width="70" height="5" fill="#fff" opacity="0.3" rx="2.5"/>
+  <rect x="370" y="315" width="70" height="5" fill="#fff" opacity="0.3" rx="2.5"/>
+  <rect x="480" y="315" width="70" height="5" fill="#fff" opacity="0.3" rx="2.5"/>
+  
+  <!-- Auto en perspectiva -->
+  <g transform="translate(200, 230)">
+    <!-- Sombra -->
+    <ellipse cx="80" cy="85" rx="70" ry="10" fill="#000" opacity="0.3"/>
+    
+    <!-- Cuerpo del auto -->
+    <path d="M30 50 L150 50 L140 75 L40 75 Z" fill="#7d5bff" opacity="0.8"/>
+    <path d="M45 30 L135 30 L145 50 L35 50 Z" fill="#2de8ff" opacity="0.7"/>
+    
+    <!-- Ventanas -->
+    <path d="M50 35 L70 35 L75 48 L45 48 Z" fill="#5efff5" opacity="0.4"/>
+    <path d="M85 35 L120 35 L130 48 L80 48 Z" fill="#5efff5" opacity="0.4"/>
+    
+    <!-- Ruedas -->
+    <circle cx="50" cy="75" r="12" fill="#1d2738" stroke="#7d5bff" stroke-width="2"/>
+    <circle cx="50" cy="75" r="6" fill="#2de8ff" opacity="0.6"/>
+    <circle cx="130" cy="75" r="12" fill="#1d2738" stroke="#7d5bff" stroke-width="2"/>
+    <circle cx="130" cy="75" r="6" fill="#2de8ff" opacity="0.6"/>
+    
+    <!-- Luces delanteras -->
+    <ellipse cx="145" cy="60" rx="4" ry="6" fill="#fff" opacity="0.9" filter="url(#glow3)"/>
+    <ellipse cx="145" cy="68" rx="4" ry="5" fill="#ff5faa" opacity="0.8" filter="url(#glow3)"/>
+  </g>
+  
+  <!-- Señales de tráfico -->
+  <g transform="translate(450, 180)">
+    <rect x="-2" y="0" width="4" height="80" fill="#acb9c9" opacity="0.6"/>
+    <path d="M0 -20 L20 0 L0 20 L-20 0 Z" fill="#ff5faa" opacity="0.8" stroke="#fff" stroke-width="2"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">!</text>
+  </g>
+  
+  <!-- Sol/Luna -->
+  <circle cx="500" cy="80" r="35" fill="#2de8ff" opacity="0.4" filter="url(#glow3)"/>
+  <circle cx="500" cy="80" r="28" fill="#fff" opacity="0.6"/>
+  
+  <!-- Nubes simples -->
+  <g opacity="0.3">
+    <ellipse cx="100" cy="100" rx="35" ry="20" fill="#fff"/>
+    <ellipse cx="80" cy="105" rx="25" ry="15" fill="#fff"/>
+    <ellipse cx="120" cy="105" rx="30" ry="18" fill="#fff"/>
+  </g>
+  
+  <g opacity="0.25">
+    <ellipse cx="350" cy="130" rx="40" ry="22" fill="#fff"/>
+    <ellipse cx="325" cy="135" rx="30" ry="18" fill="#fff"/>
+    <ellipse cx="375" cy="135" rx="35" ry="20" fill="#fff"/>
+  </g>
+</svg>

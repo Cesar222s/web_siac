@@ -1,0 +1,50 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="timeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2de8ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="timeGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Círculo del reloj -->
+  <circle cx="60" cy="60" r="35" stroke="url(#timeGrad)" stroke-width="3" fill="none" opacity="0.4"/>
+  <circle cx="60" cy="60" r="30" stroke="url(#timeGrad)" stroke-width="2" fill="url(#timeGrad)" opacity="0.1"/>
+  
+  <!-- Marcadores de hora -->
+  <circle cx="60" cy="30" r="2.5" fill="#2de8ff" opacity="0.8"/>
+  <circle cx="85" cy="45" r="2.5" fill="#2de8ff" opacity="0.6"/>
+  <circle cx="90" cy="60" r="2.5" fill="#2de8ff" opacity="0.8"/>
+  <circle cx="85" cy="75" r="2.5" fill="#2de8ff" opacity="0.6"/>
+  <circle cx="60" cy="90" r="2.5" fill="#2de8ff" opacity="0.8"/>
+  <circle cx="35" cy="75" r="2.5" fill="#2de8ff" opacity="0.6"/>
+  <circle cx="30" cy="60" r="2.5" fill="#2de8ff" opacity="0.8"/>
+  <circle cx="35" cy="45" r="2.5" fill="#2de8ff" opacity="0.6"/>
+  
+  <!-- Manecillas del reloj animadas -->
+  <line x1="60" y1="60" x2="60" y2="40" stroke="#2de8ff" stroke-width="3" stroke-linecap="round" filter="url(#timeGlow)">
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 60 60" to="360 60 60" dur="4s" repeatCount="indefinite"/>
+  </line>
+  <line x1="60" y1="60" x2="75" y2="60" stroke="#7d5bff" stroke-width="2.5" stroke-linecap="round" filter="url(#timeGlow)">
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 60 60" to="360 60 60" dur="12s" repeatCount="indefinite"/>
+  </line>
+  
+  <!-- Centro -->
+  <circle cx="60" cy="60" r="4" fill="url(#timeGrad)" filter="url(#timeGlow)"/>
+  
+  <!-- Indicador "LIVE" -->
+  <rect x="45" y="100" width="30" height="12" rx="6" fill="#ff5faa" opacity="0.8">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+  </rect>
+  <circle cx="50" cy="106" r="2" fill="#fff">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <text x="58" y="108" font-family="Arial, sans-serif" font-size="8" font-weight="bold" 
+        fill="#fff" text-anchor="middle">LIVE</text>
+</svg>

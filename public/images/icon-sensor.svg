@@ -1,0 +1,45 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="senGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2de8ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="senGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Sensor central -->
+  <circle cx="60" cy="60" r="12" fill="url(#senGrad)" opacity="0.8" filter="url(#senGlow)"/>
+  
+  <!-- Ondas de detección -->
+  <circle cx="60" cy="60" r="20" stroke="#2de8ff" stroke-width="2" fill="none" opacity="0.6">
+    <animate attributeName="r" values="20;35;20" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="60" cy="60" r="30" stroke="#7d5bff" stroke-width="2" fill="none" opacity="0.5">
+    <animate attributeName="r" values="30;45;30" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="60" cy="60" r="40" stroke="#2de8ff" stroke-width="1.5" fill="none" opacity="0.4">
+    <animate attributeName="r" values="40;55;40" dur="2s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.05;0.4" dur="2s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Nodos de conexión -->
+  <circle cx="30" cy="30" r="4" fill="#7d5bff" opacity="0.7"/>
+  <line x1="60" y1="60" x2="30" y2="30" stroke="#7d5bff" stroke-width="1.5" opacity="0.4" stroke-dasharray="2 2"/>
+  
+  <circle cx="90" cy="30" r="4" fill="#2de8ff" opacity="0.7"/>
+  <line x1="60" y1="60" x2="90" y2="30" stroke="#2de8ff" stroke-width="1.5" opacity="0.4" stroke-dasharray="2 2"/>
+  
+  <circle cx="30" cy="90" r="4" fill="#2de8ff" opacity="0.7"/>
+  <line x1="60" y1="60" x2="30" y2="90" stroke="#2de8ff" stroke-width="1.5" opacity="0.4" stroke-dasharray="2 2"/>
+  
+  <circle cx="90" cy="90" r="4" fill="#7d5bff" opacity="0.7"/>
+  <line x1="60" y1="60" x2="90" y2="90" stroke="#7d5bff" stroke-width="1.5" opacity="0.4" stroke-dasharray="2 2"/>
+</svg>

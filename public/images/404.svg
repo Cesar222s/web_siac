@@ -1,0 +1,35 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="404Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#2de8ff;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Número 404 estilizado -->
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="120" font-weight="bold" 
+        fill="url(#404Grad)" text-anchor="middle" opacity="0.3">404</text>
+  
+  <!-- Carretera perdida -->
+  <path d="M50 280 Q200 250 350 280" stroke="#7d5bff" stroke-width="4" fill="none" opacity="0.4"/>
+  <path d="M50 280 L60 270 M100 278 L110 268 M150 276 L160 266 M200 275 L210 265 M250 276 L260 266 M300 278 L310 268 M350 280 L340 270" 
+        stroke="#2de8ff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  
+  <!-- Señal de tráfico caída -->
+  <g transform="translate(180, 200) rotate(30)">
+    <rect x="-2" y="0" width="4" height="40" fill="#acb9c9" opacity="0.5"/>
+    <path d="M0 -15 L15 0 L0 15 L-15 0 Z" fill="#ff5faa" opacity="0.7" stroke="#fff" stroke-width="1.5"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">!</text>
+  </g>
+  
+  <!-- Auto confundido -->
+  <g transform="translate(120, 220)">
+    <rect x="0" y="0" width="50" height="20" rx="5" fill="#7d5bff" opacity="0.6"/>
+    <rect x="5" y="-10" width="40" height="10" rx="3" fill="#2de8ff" opacity="0.5"/>
+    <circle cx="12" cy="20" r="6" fill="#1d2738" stroke="#7d5bff" stroke-width="1.5"/>
+    <circle cx="38" cy="20" r="6" fill="#1d2738" stroke="#7d5bff" stroke-width="1.5"/>
+    
+    <!-- Signos de interrogación -->
+    <text x="25" y="-15" font-family="Arial, sans-serif" font-size="16" fill="#ff5faa" text-anchor="middle">?</text>
+  </g>
+</svg>

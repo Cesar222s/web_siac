@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a5f8f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7d8fab;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="roadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#505050;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a3a3a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="carGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#9d7bff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="windowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#b8d4ff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#6699cc;stop-opacity:0.3" />
+    </linearGradient>
+
+    <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5a6b8f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a4a6a;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Filtros -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feMerge>
+        <feMergeNode in="offsetblur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    /* Versión estática sin animaciones para evitar desajustes visuales */
+    .car-body {}
+    .wheel {}
+    .road-line {}
+    .cloud {}
+  </style>
+
+  <!-- Cielo -->
+  <rect x="0" y="0" width="1000" height="280" fill="url(#skyGradient)"/>
+  
+  <!-- Sol -->
+  <circle cx="850" cy="80" r="45" fill="#ffd700" opacity="0.8">
+    <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="850" cy="80" r="55" fill="#ffd700" opacity="0.3"/>
+
+  <!-- Nubes -->
+  <g class="cloud">
+    <ellipse cx="200" cy="80" rx="50" ry="25" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="230" cy="75" rx="40" ry="22" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="170" cy="85" rx="35" ry="20" fill="#ffffff" opacity="0.6"/>
+  </g>
+  
+  <g class="cloud" style="animation-delay: -20s;">
+    <ellipse cx="600" cy="120" rx="60" ry="30" fill="#ffffff" opacity="0.5"/>
+    <ellipse cx="640" cy="115" rx="50" ry="28" fill="#ffffff" opacity="0.5"/>
+    <ellipse cx="560" cy="125" rx="40" ry="25" fill="#ffffff" opacity="0.5"/>
+  </g>
+
+  <!-- Montañas -->
+  <polygon points="0,280 150,120 300,280" fill="url(#mountainGradient)" opacity="0.7"/>
+  <polygon points="200,280 380,100 560,280" fill="url(#mountainGradient)" opacity="0.6"/>
+  <polygon points="450,280 650,140 850,280" fill="url(#mountainGradient)" opacity="0.5"/>
+  <polygon points="700,280 900,160 1100,280" fill="url(#mountainGradient)" opacity="0.4"/>
+
+  <!-- Pasto/Campo -->
+  <rect x="0" y="280" width="1000" height="50" fill="#6b8e5a" opacity="0.8"/>
+  <rect x="0" y="285" width="1000" height="3" fill="#5a7d49" opacity="0.5"/>
+
+  <!-- Carretera -->
+  <path d="M 0 330 L 0 500 L 1000 500 L 1000 330 Q 500 370, 0 330 Z" fill="url(#roadGradient)"/>
+  
+  <!-- Líneas laterales de la carretera -->
+  <path d="M 0 340 Q 500 380, 1000 340" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 0 490 L 1000 490" stroke="#ffffff" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- Líneas centrales (discontinuas) -->
+  <g class="road-line">
+    <rect x="480" y="400" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="380" y="405" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="280" y="410" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="180" y="415" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="80" y="420" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="-20" y="425" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+  </g>
+
+  <g class="road-line" style="animation-delay: -1s;">
+    <rect x="580" y="395" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="680" y="390" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="780" y="385" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="880" y="380" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+    <rect x="980" y="375" width="40" height="6" rx="3" fill="#ffdd00" opacity="0.8"/>
+  </g>
+
+  <!-- Carro -->
+  <g class="car-body" transform="translate(320, 380)">
+    <!-- Sombra en la carretera -->
+    <ellipse cx="0" cy="35" rx="95" ry="12" fill="#000000" opacity="0.5"/>
+
+    <!-- Carrocería -->
+    <g>
+      <!-- Parte inferior del auto (chasis) -->
+      <rect x="-90" y="10" width="180" height="40" rx="8" fill="url(#carGradient)" stroke="#5a3dd9" stroke-width="2"/>
+      
+      <!-- Capó y techo -->
+      <path d="M -80 10 L -55 -20 L 35 -20 L 70 10 Z" fill="url(#carGradient)" stroke="#5a3dd9" stroke-width="2"/>
+      
+      <!-- Ventanas frontales -->
+      <path d="M -50 -15 L -30 0 L 10 0 L 30 -15 Z" fill="url(#windowGradient)" stroke="#6699cc" stroke-width="1"/>
+      
+      <!-- Ventana trasera -->
+      <path d="M -75 -5 L -58 3 L -35 3 L -53 -12 Z" fill="url(#windowGradient)" stroke="#6699cc" stroke-width="1" opacity="0.8"/>
+      
+      <!-- Parabrisas delantero -->
+      <path d="M 12 0 L 33 -13 L 65 5 L 40 8 Z" fill="url(#windowGradient)" stroke="#6699cc" stroke-width="1" opacity="0.8"/>
+      
+      <!-- Línea decorativa del auto -->
+      <rect x="-85" y="18" width="170" height="5" rx="2" fill="#5a3dd9" opacity="0.6"/>
+      <rect x="-80" y="35" width="160" height="3" rx="1.5" fill="#2de8ff" opacity="0.4"/>
+      
+      <!-- Faros delanteros -->
+      <ellipse cx="75" cy="20" rx="9" ry="11" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <ellipse cx="75" cy="35" rx="7" ry="9" fill="#ffdd00" opacity="0.85" filter="url(#glow)"/>
+      
+      <!-- Luces traseras -->
+      <rect x="-95" y="18" width="7" height="13" rx="3" fill="#ff5faa" opacity="0.95" filter="url(#glow)"/>
+      <rect x="-95" y="33" width="7" height="10" rx="3" fill="#ff3366" opacity="0.8"/>
+      
+      <!-- Espejo retrovisor -->
+      <rect x="38" y="-10" width="4" height="9" fill="#333333"/>
+      <rect x="36" y="-10" width="8" height="6" rx="2" fill="#222222" stroke="#444444" stroke-width="0.5"/>
+      
+      <!-- Parrilla delantera -->
+      <rect x="78" y="22" width="5" height="22" rx="1" fill="#2a2a2a" opacity="0.7"/>
+      
+      <!-- Manijas de puertas -->
+      <rect x="-20" y="20" width="14" height="4" rx="2" fill="#222222" opacity="0.7"/>
+      <rect x="25" y="20" width="14" height="4" rx="2" fill="#222222" opacity="0.7"/>
+      
+      <!-- Llanta trasera -->
+      <g class="wheel" transform="translate(-55, 35)">
+        <circle cx="0" cy="0" r="18" fill="#1a1a1a" stroke="#333333" stroke-width="2"/>
+        <circle cx="0" cy="0" r="15" fill="#2a2a2a"/>
+        <circle cx="0" cy="0" r="9" fill="#444444"/>
+        <circle cx="0" cy="0" r="5" fill="#666666"/>
+        <line x1="-9" y1="0" x2="9" y2="0" stroke="#999999" stroke-width="2"/>
+        <line x1="0" y1="-9" x2="0" y2="9" stroke="#999999" stroke-width="2"/>
+        <line x1="-6" y1="-6" x2="6" y2="6" stroke="#777777" stroke-width="1.5"/>
+        <line x1="-6" y1="6" x2="6" y2="-6" stroke="#777777" stroke-width="1.5"/>
+      </g>
+      
+      <!-- Llanta delantera -->
+      <g class="wheel" transform="translate(50, 35)">
+        <circle cx="0" cy="0" r="18" fill="#1a1a1a" stroke="#333333" stroke-width="2"/>
+        <circle cx="0" cy="0" r="15" fill="#2a2a2a"/>
+        <circle cx="0" cy="0" r="9" fill="#444444"/>
+        <circle cx="0" cy="0" r="5" fill="#666666"/>
+        <line x1="-9" y1="0" x2="9" y2="0" stroke="#999999" stroke-width="2"/>
+        <line x1="0" y1="-9" x2="0" y2="9" stroke="#999999" stroke-width="2"/>
+        <line x1="-6" y1="-6" x2="6" y2="6" stroke="#777777" stroke-width="1.5"/>
+        <line x1="-6" y1="6" x2="6" y2="-6" stroke="#777777" stroke-width="1.5"/>
+      </g>
+      
+      <!-- Detalles adicionales -->
+      <ellipse cx="-70" cy="25" rx="3" ry="4" fill="#333333" opacity="0.5"/>
+      <rect x="60" y="12" width="8" height="3" rx="1" fill="#2a2a2a" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- Señales de tráfico -->
+  <g transform="translate(750, 320)">
+    <rect x="0" y="0" width="4" height="80" fill="#777777"/>
+    <rect x="-15" y="-5" width="34" height="34" rx="3" fill="#ff3333" stroke="#ffffff" stroke-width="2"/>
+    <text x="2" y="17" font-family="Arial" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">80</text>
+  </g>
+</svg>

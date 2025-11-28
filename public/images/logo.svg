@@ -1,0 +1,48 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo circular gradiente -->
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2de8ff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Círculo exterior -->
+  <circle cx="100" cy="100" r="90" stroke="url(#logoGrad)" stroke-width="3" fill="none" opacity="0.3"/>
+  <circle cx="100" cy="100" r="80" stroke="url(#logoGrad)" stroke-width="2" fill="none" opacity="0.5"/>
+  
+  <!-- Escudo central -->
+  <path d="M100 30 L140 50 L140 100 C140 125 125 145 100 155 C75 145 60 125 60 100 L60 50 Z" 
+        fill="url(#logoGrad)" opacity="0.2" stroke="url(#logoGrad)" stroke-width="2.5"/>
+  
+  <!-- Carretera estilizada -->
+  <path d="M85 95 L85 120 M95 95 L95 120 M105 95 L105 120 M115 95 L115 120" 
+        stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M70 120 L130 120 L125 135 L75 135 Z" 
+        fill="#7d5bff" opacity="0.6" stroke="#2de8ff" stroke-width="1.5"/>
+  
+  <!-- Volante -->
+  <circle cx="100" cy="75" r="18" stroke="#2de8ff" stroke-width="3" fill="none" filter="url(#glow)"/>
+  <circle cx="100" cy="75" r="12" fill="#7d5bff" opacity="0.5"/>
+  <path d="M82 75 L88 75 M112 75 L118 75 M100 57 L100 63 M100 87 L100 93" 
+        stroke="#2de8ff" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Señal de alerta -->
+  <circle cx="135" cy="65" r="8" fill="#ff5faa" opacity="0.8" filter="url(#glow)"/>
+  <circle cx="135" cy="65" r="4" fill="#fff"/>
+  
+  <!-- Ondas de señal -->
+  <path d="M45 75 Q50 75 55 70" stroke="#2de8ff" stroke-width="2" stroke-linecap="round" opacity="0.6" fill="none"/>
+  <path d="M40 80 Q47 80 54 73" stroke="#7d5bff" stroke-width="2" stroke-linecap="round" opacity="0.5" fill="none"/>
+  
+  <!-- Texto SIAC -->
+  <text x="100" y="175" font-family="Arial, sans-serif" font-size="24" font-weight="bold" 
+        fill="url(#logoGrad)" text-anchor="middle">SIAC</text>
+</svg>

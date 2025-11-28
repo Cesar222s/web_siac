@@ -1,0 +1,42 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="supportGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2de8ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="supportGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Auriculares -->
+  <path d="M40 50 Q40 25 60 25 Q80 25 80 50" stroke="url(#supportGrad)" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8" filter="url(#supportGlow)"/>
+  
+  <!-- Almohadilla izquierda -->
+  <rect x="32" y="48" width="16" height="28" rx="8" fill="url(#supportGrad)" opacity="0.7"/>
+  <rect x="36" y="52" width="8" height="20" rx="4" fill="#2de8ff" opacity="0.3"/>
+  
+  <!-- Almohadilla derecha -->
+  <rect x="72" y="48" width="16" height="28" rx="8" fill="url(#supportGrad)" opacity="0.7"/>
+  <rect x="76" y="52" width="8" height="20" rx="4" fill="#7d5bff" opacity="0.3"/>
+  
+  <!-- Micrófono -->
+  <path d="M32 65 Q25 65 25 72 L25 78" stroke="#2de8ff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <circle cx="25" cy="82" r="4" fill="#2de8ff" opacity="0.8"/>
+  
+  <!-- Ondas de sonido -->
+  <path d="M20 68 Q15 68 12 65" stroke="#2de8ff" stroke-width="2" stroke-linecap="round" opacity="0.5" fill="none">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M18 73 Q13 73 8 70" stroke="#2de8ff" stroke-width="2" stroke-linecap="round" opacity="0.4" fill="none">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Icono de soporte 24/7 -->
+  <circle cx="85" cy="85" r="12" fill="#ff5faa" opacity="0.8" filter="url(#supportGlow)"/>
+  <text x="85" y="90" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">24/7</text>
+</svg>

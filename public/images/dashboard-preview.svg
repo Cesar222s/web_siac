@@ -1,0 +1,109 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dashGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d5bff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#2de8ff;stop-opacity:0.6" />
+    </linearGradient>
+    <linearGradient id="dashGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff5faa;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:0.6" />
+    </linearGradient>
+    <filter id="dashGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="800" height="500" fill="#141c2b"/>
+  
+  <!-- Panel principal -->
+  <rect x="30" y="30" width="740" height="440" rx="15" fill="#1d2738" opacity="0.8" stroke="#7d5bff" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="30" y="30" width="740" height="60" rx="15" fill="url(#dashGrad1)" opacity="0.3"/>
+  <text x="60" y="65" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff">
+    Panel de Control SIAC
+  </text>
+  <circle cx="720" cy="60" r="8" fill="#2de8ff" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="690" y="65" font-family="Arial, sans-serif" font-size="12" fill="#2de8ff">ACTIVO</text>
+  
+  <!-- Tarjetas de estadísticas -->
+  <!-- Tarjeta 1: Velocidad -->
+  <g transform="translate(60, 120)">
+    <rect width="200" height="120" rx="12" fill="#26344a" opacity="0.6" stroke="#7d5bff" stroke-width="1.5"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="14" fill="#2de8ff" text-anchor="middle">VELOCIDAD</text>
+    <text x="100" y="75" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle">68</text>
+    <text x="100" y="100" font-family="Arial, sans-serif" font-size="16" fill="#7d5bff" text-anchor="middle">km/h</text>
+  </g>
+  
+  <!-- Tarjeta 2: Distancia -->
+  <g transform="translate(290, 120)">
+    <rect width="200" height="120" rx="12" fill="#26344a" opacity="0.6" stroke="#2de8ff" stroke-width="1.5"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="14" fill="#2de8ff" text-anchor="middle">DISTANCIA</text>
+    <text x="100" y="75" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle">12.5</text>
+    <text x="100" y="100" font-family="Arial, sans-serif" font-size="16" fill="#7d5bff" text-anchor="middle">metros</text>
+  </g>
+  
+  <!-- Tarjeta 3: Alertas -->
+  <g transform="translate(520, 120)">
+    <rect width="200" height="120" rx="12" fill="#26344a" opacity="0.6" stroke="#ff5faa" stroke-width="1.5"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="14" fill="#ff5faa" text-anchor="middle">ALERTAS</text>
+    <text x="100" y="75" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+    <text x="100" y="100" font-family="Arial, sans-serif" font-size="16" fill="#ff5faa" text-anchor="middle">activas</text>
+    <circle cx="180" cy="25" r="6" fill="#ff5faa" opacity="0.9">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Gráfico de monitoreo -->
+  <g transform="translate(60, 270)">
+    <rect width="430" height="170" rx="12" fill="#26344a" opacity="0.6" stroke="#7d5bff" stroke-width="1.5"/>
+    <text x="15" y="25" font-family="Arial, sans-serif" font-size="14" fill="#2de8ff">Monitoreo en Tiempo Real</text>
+    
+    <!-- Línea de gráfico -->
+    <path d="M20 140 L60 110 L100 125 L140 90 L180 105 L220 95 L260 115 L300 100 L340 120 L380 105 L410 115" 
+          stroke="#2de8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" 
+          fill="none" filter="url(#dashGlow)"/>
+    
+    <!-- Área bajo la curva -->
+    <path d="M20 140 L60 110 L100 125 L140 90 L180 105 L220 95 L260 115 L300 100 L340 120 L380 105 L410 115 L410 150 L20 150 Z" 
+          fill="url(#dashGrad1)" opacity="0.2"/>
+    
+    <!-- Puntos de datos -->
+    <circle cx="140" cy="90" r="4" fill="#2de8ff" filter="url(#dashGlow)"/>
+    <circle cx="220" cy="95" r="4" fill="#2de8ff" filter="url(#dashGlow)"/>
+    <circle cx="340" cy="120" r="4" fill="#2de8ff" filter="url(#dashGlow)"/>
+  </g>
+  
+  <!-- Panel de estado del sistema -->
+  <g transform="translate(520, 270)">
+    <rect width="200" height="170" rx="12" fill="#26344a" opacity="0.6" stroke="#2de8ff" stroke-width="1.5"/>
+    <text x="15" y="25" font-family="Arial, sans-serif" font-size="14" fill="#2de8ff">Estado del Sistema</text>
+    
+    <!-- Indicadores -->
+    <g transform="translate(15, 50)">
+      <circle cx="8" cy="0" r="5" fill="#2de8ff" opacity="0.8"/>
+      <text x="25" y="5" font-family="Arial, sans-serif" font-size="12" fill="#fff">Sensores OK</text>
+    </g>
+    <g transform="translate(15, 80)">
+      <circle cx="8" cy="0" r="5" fill="#2de8ff" opacity="0.8"/>
+      <text x="25" y="5" font-family="Arial, sans-serif" font-size="12" fill="#fff">GPS Activo</text>
+    </g>
+    <g transform="translate(15, 110)">
+      <circle cx="8" cy="0" r="5" fill="#ff5faa" opacity="0.8">
+        <animate attributeName="opacity" values="0.4;1;0.4" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      <text x="25" y="5" font-family="Arial, sans-serif" font-size="12" fill="#ff5faa">Alerta Activa</text>
+    </g>
+    <g transform="translate(15, 140)">
+      <circle cx="8" cy="0" r="5" fill="#2de8ff" opacity="0.8"/>
+      <text x="25" y="5" font-family="Arial, sans-serif" font-size="12" fill="#fff">Conexión 5G</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mailGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2de8ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7d5bff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="mailGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Sobre de correo -->
+  <rect x="20" y="35" width="80" height="55" rx="6" stroke="url(#mailGrad)" stroke-width="3" fill="url(#mailGrad)" opacity="0.2" filter="url(#mailGlow)"/>
+  
+  <!-- Tapa del sobre -->
+  <path d="M20 35 L60 65 L100 35" stroke="url(#mailGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+  
+  <!-- Líneas del mensaje interior -->
+  <line x1="35" y1="55" x2="65" y2="55" stroke="#2de8ff" stroke-width="2" opacity="0.4"/>
+  <line x1="35" y1="65" x2="85" y2="65" stroke="#2de8ff" stroke-width="2" opacity="0.4"/>
+  <line x1="35" y1="75" x2="75" y2="75" stroke="#7d5bff" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Indicador de nuevo mensaje -->
+  <circle cx="90" cy="25" r="10" fill="#ff5faa" opacity="0.9" filter="url(#mailGlow)">
+    <animate attributeName="r" values="10;12;10" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <text x="90" y="29" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">!</text>
+</svg>
