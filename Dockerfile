@@ -12,7 +12,9 @@ RUN npm run build || echo "Skipping asset build (check Vite config)"
 FROM composer:2 AS vendor
 WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --prefer-dist --no-progress --no-scripts --no-interaction
+# Install PHP dependencies without requiring ext-mongodb in the build image
+RUN composer install --no-dev --prefer-dist --no-progress --no-scripts --no-interaction \
+    --ignore-platform-req=ext-mongodb
 
 # Stage 3: Runtime (PHP-FPM + Nginx + Supervisor)
 FROM php:8.2-fpm-alpine AS runtime
