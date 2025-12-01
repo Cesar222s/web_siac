@@ -38,8 +38,8 @@ COPY . ./
 RUN rm -rf vendor
 # Copy vendor from composer stage
 COPY --from=vendor /app/vendor ./vendor
-# Copy built assets
-COPY --from=frontend /app/dist ./public/build
+# Copy built assets (Laravel Vite outputs to public/build)
+COPY --from=frontend /app/public/build ./public/build
 
 # Nginx configuration
 RUN mkdir -p /run/nginx
