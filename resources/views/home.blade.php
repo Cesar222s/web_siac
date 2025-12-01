@@ -53,6 +53,33 @@
     </div>
 </div>
 
+<div class="fade-in" style="margin-top:2.2rem; background:linear-gradient(135deg,rgba(125,91,255,.18),rgba(45,232,255,.15)); border:1px solid rgba(125,91,255,.35); padding:2rem 1.5rem; border-radius:24px; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; background:radial-gradient(circle at 75% 30%, rgba(255,95,170,.25), transparent 60%); filter:blur(40px); opacity:.6;"></div>
+    <h2 style="margin:0 0 1rem; position:relative; z-index:1; font-size:1.5rem; display:flex; align-items:center; gap:.6rem;">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+        Informe Analítico de SIAC
+    </h2>
+    <p style="margin:0 0 1.2rem; font-size:.95rem; color:var(--text-dim); max-width:860px; position:relative; z-index:1;">Explora nuestro tablero de análisis para visualizar patrones de uso, tendencias de comportamiento y oportunidades de mejora en la asistencia de conducción. Este informe ayuda a tomar decisiones basadas en datos reales y a priorizar acciones de seguridad.</p>
+    <ul style="list-style:none; padding:0; margin:0 0 1.2rem; display:grid; gap:.4rem; font-size:.8rem; position:relative; z-index:1;">
+        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Identifica horas pico de riesgo y fatiga.</li>
+        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Optimiza alertas según comportamiento histórico.</li>
+        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Prioriza mejoras para la experiencia del conductor.</li>
+        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Refuerza decisiones con métricas verificables.</li>
+    </ul>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; position:relative; z-index:1;">
+        <a href="https://lookerstudio.google.com/reporting/d46e76c2-3be2-4391-8352-dffd7f19b978" target="_blank" rel="noopener" class="btn" style="display:inline-flex; align-items:center; gap:.5rem;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 21H3v-7"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+            Ver Informe
+        </a>
+    </div>
+    <div style="margin-top:1rem; font-size:.7rem; color:var(--text-dim); position:relative; z-index:1;">
+        Nota: La visualización embebida está deshabilitada por el propietario del informe. Para habilitarla en el futuro activa "Allow embedding" en Looker Studio (Compartir → Administrar acceso → Configuración de inserción).
+    </div>
+</div>
+
+
+{{-- Sección de clustering eliminada a solicitud del usuario --}}
+
 <div style="margin-top:3.5rem; text-align:center;">
     <h2 style="font-size:clamp(1.6rem,2rem,2.2rem); margin-bottom:2.5rem; background:linear-gradient(120deg,var(--text),var(--text-dim)); -webkit-background-clip:text; background-clip:text; color:transparent;">Características principales</h2>
 </div>

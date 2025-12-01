@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route as FacadeRoute;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sobre-nosotros', [HomeController::class, 'about'])->name('about');
 Route::get('/servicios', [ServicesController::class, 'index'])->name('services');
+Route::get('/modelo-supervisado', [\App\Http\Controllers\ModelController::class, 'show'])->name('model.supervised');
 Route::get('/contacto', [ContactController::class, 'show'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'submit'])->name('contact.submit');
 // Página de requerimientos detallada removida según indicación
