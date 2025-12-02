@@ -45,6 +45,22 @@ class KMeansService
                 ];
             }
             $vectors = $this->extractVectors($rows, $numericColumns);
+            // extraer puntos lat/lon si corresponde
+            $points = [];
+            if (count($numericColumns) >= 2) {
+                $latCol = $numericColumns[0];
+                $lonCol = $numericColumns[1];
+                foreach ($rows as $r) {
+                    $lat = trim((string)$r[$latCol] ?? '');
+                    $lon = trim((string)$r[$lonCol] ?? '');
+                    if ($lat === '' || $lon === '') continue;
+                    if (preg_match('/^\d+,\d+$/', $lat)) { $lat = str_replace(',', '.', $lat); }
+                    if (preg_match('/^\d+,\d+$/', $lon)) { $lon = str_replace(',', '.', $lon); }
+                    if (is_numeric($lat) && is_numeric($lon)) {
+                        $points[] = [ (float)$lat, (float)$lon ];
+                    }
+                }
+            }
             $result = $this->runKMeans($vectors);
             return [
                 'available' => true,
@@ -52,6 +68,7 @@ class KMeansService
                 'centroids' => $result['centroids'],
                 'counts' => $result['counts'],
                 'total' => count($vectors),
+                'points' => $points,
             ];
         });
     }

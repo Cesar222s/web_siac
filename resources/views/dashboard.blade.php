@@ -42,26 +42,43 @@
   <div class="card">
     <h2 style="margin-top:0;">Mapa de calor (web)</h2>
     <div class="map" id="heatmap"></div>
-    <p style="font-size:.85rem; color:var(--text-dim)">Vista previa: los clústeres se proyectan como densidades. (Integrar librería de mapas: Leaflet/Mapbox para interactivo).</p>
+    <p style="font-size:.85rem; color:var(--text-dim)">Vista: densidad de puntos y centroides (Leaflet + Heatmap).</p>
   </div>
   @endif
 </div>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
 <script>
-  // Placeholder heatmap render using points density
   const points = @json($points);
-  const el = document.getElementById('heatmap');
-  if (el && Array.isArray(points)) {
-    const ctx = el.getContext ? el.getContext('2d') : null;
-    if (!ctx) {
-      const info = document.createElement('div');
-      info.style.position = 'absolute';
-      info.style.inset = '0';
-      info.style.display = 'grid';
-      info.style.placeItems = 'center';
-      info.style.color = '#89a3ff';
-      info.textContent = 'Integrar mapa interactivo (Leaflet/Mapbox)';
-      el.appendChild(info);
+  const clusters = @json($clusters);
+  const mapEl = document.getElementById('heatmap');
+  if (mapEl) {
+    const map = L.map(mapEl).setView([20.6736, -103.344], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+    // Heat layer from points
+    if (Array.isArray(points) && points.length > 0) {
+      const heatData = points.map(p => [p[0], p[1], 0.6]);
+      const heat = L.heatLayer(heatData, { radius: 18, blur: 20, maxZoom: 17 }).addTo(map);
+      map.fitBounds(L.latLngBounds(points.map(p => L.latLng(p[0], p[1]))));
+    }
+    // Plot centroids (assumes first two dims are lat/lon)
+    if (Array.isArray(clusters)) {
+      clusters.forEach((c, idx) => {
+        if (Array.isArray(c) && c.length >= 2) {
+          L.circleMarker([c[0], c[1]], {
+            radius: 8,
+            color: '#7D5BFF',
+            weight: 2,
+            fillColor: '#7D5BFF',
+            fillOpacity: 0.7
+          }).addTo(map).bindPopup(`Zona ${idx+1}`);
+        }
+      });
     }
   }
 </script>
