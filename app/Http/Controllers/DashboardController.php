@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\KMeansService;
 use App\Services\BigQueryProvider;
+use App\Services\DBSCANService;
 
 class DashboardController extends Controller
 {
@@ -13,6 +14,7 @@ class DashboardController extends Controller
         // Parámetros (extensibles): tipo, hora, día
         $k = (int)($request->input('k', 5));
         $useBigQuery = (bool)env('BIGQUERY_ENABLED', false);
+        $model = strtolower($request->input('model', 'kmeans')); // 'kmeans' | 'dbscan'
         if ($useBigQuery) {
             $provider = new BigQueryProvider();
             $pointsRows = $provider->fetchPoints(15000);
@@ -20,12 +22,55 @@ class DashboardController extends Controller
             $columns = ['lat','lon'];
             $rows = [];
             foreach ($pointsRows as $r) { $rows[] = ['lat' => $r[0], 'lon' => $r[1]]; }
-            // Run simple k-means on lat/lon
-            $result = $this->clusterFromRows($rows, $columns, $k, 25);
+            if ($model === 'dbscan') {
+                $points = array_map(fn($rr) => [(float)$rr['lat'], (float)$rr['lon']], $rows);
+                $dbscan = new DBSCANService((float)$request->input('eps', 0.01), (int)$request->input('minPts', 20));
+                $res = $dbscan->cluster($points);
+                $result = [
+                    'available' => true,
+                    'columns' => $columns,
+                    'centroids' => $res['centroids'],
+                    'counts' => $res['counts'],
+                    'points' => $points,
+                    'top5' => $res['top5'],
+                ];
+            } else {
+                // Run simple k-means on lat/lon
+                $result = $this->clusterFromRows($rows, $columns, $k, 25);
+            }
         } else {
             $filePath = storage_path('app/data/atus_2017.csv');
-            $service = new KMeansService($filePath, $k, 25);
-            $result = $service->cluster();
+            if ($model === 'dbscan') {
+                // Read points from CSV quickly
+                $points = [];
+                if (file_exists($filePath)) {
+                    if (($h = fopen($filePath, 'r')) !== false) {
+                        $header = fgetcsv($h);
+                        while (($row = fgetcsv($h)) !== false) {
+                            $data = array_combine($header, $row);
+                            if (isset($data['lat'], $data['lon'])) {
+                                $lat = (float)str_replace(',', '.', $data['lat']);
+                                $lon = (float)str_replace(',', '.', $data['lon']);
+                                $points[] = [$lat, $lon];
+                            }
+                        }
+                        fclose($h);
+                    }
+                }
+                $dbscan = new DBSCANService((float)$request->input('eps', 0.01), (int)$request->input('minPts', 20));
+                $res = $dbscan->cluster($points);
+                $result = [
+                    'available' => true,
+                    'columns' => ['lat','lon'],
+                    'centroids' => $res['centroids'],
+                    'counts' => $res['counts'],
+                    'points' => $points,
+                    'top5' => $res['top5'],
+                ];
+            } else {
+                $service = new KMeansService($filePath, $k, 25);
+                $result = $service->cluster();
+            }
         }
 
         $zonesCount = is_array($result['centroids'] ?? null) ? count($result['centroids']) : 0;
