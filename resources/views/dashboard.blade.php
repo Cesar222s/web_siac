@@ -13,8 +13,14 @@
   <h1 style="margin:0;">Dashboard: Zonas Críticas (K-Means)</h1>
 </div>
 <p class="badge">k = {{ $k }}</p>
+@if(isset($available) && !$available)
+  <div class="card" style="margin-top:1rem; border-color:#e08a8a; background:rgba(224,138,138,.12);">
+    <strong>Datos no disponibles:</strong> {{ $message }}
+  </div>
+@endif
 
 <div class="grid">
+  @if(!isset($available) || $available)
   <div class="card">
     <h2 style="margin-top:0;">Resumen</h2>
     <p>Se identificaron {{ $zonesCount }} zonas críticas con mayor incidencia de accidentes.</p>
@@ -29,6 +35,7 @@
     <div class="map" id="heatmap"></div>
     <p style="font-size:.85rem; color:var(--text-dim)">Vista previa: los clústeres se proyectan como densidades. (Integrar librería de mapas: Leaflet/Mapbox para interactivo).</p>
   </div>
+  @endif
 </div>
 
 <script>

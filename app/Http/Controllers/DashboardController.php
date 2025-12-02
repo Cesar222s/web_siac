@@ -9,16 +9,19 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // Parameters can be extended to filter by tipo, hora, día
+        // Parámetros (extensibles): tipo, hora, día
         $k = (int)($request->input('k', 5));
-        $service = new KMeansService();
-        $result = $service->analyze($k);
+        $filePath = storage_path('app/data/atus_2017.csv');
 
-        // Expected $result: ['centroids' => [...], 'counts' => [...], 'points' => [...]]
+        $service = new KMeansService($filePath, $k, 25);
+        $result = $service->cluster();
+
         $zonesCount = is_array($result['centroids'] ?? null) ? count($result['centroids']) : 0;
 
         return view('dashboard', [
             'k' => $k,
+            'available' => $result['available'] ?? true,
+            'message' => $result['message'] ?? null,
             'zonesCount' => $zonesCount,
             'clusters' => $result['centroids'] ?? [],
             'counts' => $result['counts'] ?? [],
