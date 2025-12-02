@@ -72,9 +72,7 @@
             Ver Informe
         </a>
     </div>
-    <div style="margin-top:1rem; font-size:.7rem; color:var(--text-dim); position:relative; z-index:1;">
-        Nota: La visualización embebida está deshabilitada por el propietario del informe. Para habilitarla en el futuro activa "Allow embedding" en Looker Studio (Compartir → Administrar acceso → Configuración de inserción).
-    </div>
+    
 </div>
 
 
