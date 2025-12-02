@@ -207,9 +207,17 @@ class KMeansService
             unset($cent);
             if (!$changed) break;
         }
+        $counts = $this->countAssignments($assignments, $k);
+        // ordenar clusters por tamaño para destacar Top 5
+        $order = range(0, $k-1);
+        usort($order, function($a,$b) use ($counts){ return $counts[$b] <=> $counts[$a]; });
+        $sortedCentroids = [];
+        $sortedCounts = [];
+        foreach ($order as $cid) { $sortedCentroids[] = $centroids[$cid]; $sortedCounts[] = $counts[$cid]; }
         return [
-            'centroids' => $centroids,
-            'counts' => $this->countAssignments($assignments, $k),
+            'centroids' => $sortedCentroids,
+            'counts' => $sortedCounts,
+            'top5' => array_slice(array_map(function($c,$n){ return ['centroid'=>$c,'count'=>$n]; }, $sortedCentroids, $sortedCounts), 0, 5),
         ];
     }
 

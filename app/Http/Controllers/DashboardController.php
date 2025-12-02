@@ -27,6 +27,7 @@ class DashboardController extends Controller
             'counts' => $result['counts'] ?? [],
             'points' => $result['points'] ?? [],
             'columns' => $result['columns'] ?? [],
+            'top5' => $result['top5'] ?? [],
         ]);
     }
 }

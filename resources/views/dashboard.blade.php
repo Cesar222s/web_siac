@@ -38,6 +38,12 @@
         </li>
       @endforeach
     </ul>
+    <h3 style="margin:1rem 0 .5rem;">🥇 Top 5 zonas de mayor riesgo</h3>
+    <ol>
+      @foreach(($top5 ?? []) as $i => $t)
+        <li>Zona {{ $i+1 }} — {{ $t['count'] }} puntos</li>
+      @endforeach
+    </ol>
   </div>
   <div class="card">
     <h2 style="margin-top:0;">Mapa de calor (web)</h2>
@@ -53,6 +59,7 @@
 <script>
   const points = @json($points);
   const clusters = @json($clusters);
+  const top5 = @json($top5);
   const mapEl = document.getElementById('heatmap');
   if (mapEl) {
     const map = L.map(mapEl).setView([20.6736, -103.344], 11);
@@ -77,6 +84,21 @@
             fillColor: '#7D5BFF',
             fillOpacity: 0.7
           }).addTo(map).bindPopup(`Zona ${idx+1}`);
+        }
+      });
+    }
+    // Highlight Top 5 centroids
+    if (Array.isArray(top5)) {
+      top5.forEach((t, idx) => {
+        const c = t.centroid || [];
+        if (Array.isArray(c) && c.length >= 2) {
+          L.circleMarker([c[0], c[1]], {
+            radius: 10,
+            color: '#FF7D7D',
+            weight: 3,
+            fillColor: '#FF7D7D',
+            fillOpacity: 0.8
+          }).addTo(map).bindPopup(`Top ${idx+1} — ${t.count} puntos`);
         }
       });
     }
