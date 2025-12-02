@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route as FacadeRoute;
 
 /*
@@ -51,4 +52,7 @@ Route::get('/password/reset', [\App\Http\Controllers\PasswordResetController::cl
 Route::post('/password/email', [\App\Http\Controllers\PasswordResetController::class, 'sendLink'])->name('password.email');
 Route::get('/password/reset/{token}', [\App\Http\Controllers\PasswordResetController::class, 'resetForm'])->name('password.reset');
 Route::post('/password/reset', [\App\Http\Controllers\PasswordResetController::class, 'updatePassword'])->name('password.update');
+
+// Dashboard de zonas críticas (K-Means)
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
