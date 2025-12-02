@@ -67,6 +67,23 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ---
 
+## Configuración de BigQuery (Dashboard)
+
+Para alimentar el dashboard con BigQuery en lugar del CSV local, define estas variables en tu entorno:
+
+```env
+BIGQUERY_ENABLED=true
+BIGQUERY_PROJECT_ID=precise-data-472415-s9
+BIGQUERY_DATASET=test
+BIGQUERY_TABLE=INEGI_VIEW
+BIGQUERY_KEYFILE=/absolute/path/to/bq-key.json
+```
+
+Notas:
+- `BIGQUERY_KEYFILE` debe apuntar al archivo de credenciales JSON del servicio de GCP con permisos de lectura sobre la tabla.
+- Con `BIGQUERY_ENABLED=true`, la ruta `/dashboard?k=5` consulta BigQuery, ejecuta K-Means sobre lat/lon y muestra heatmap + centroides y Top 5.
+
+
 # Despliegue de SIAC en Render (Docker)
 
 Este proyecto incluye configuración lista para desplegarlo en la plataforma [Render](https://render.com) usando un contenedor Docker multi-stage (Laravel + PHP-FPM + Nginx + Supervisor).
