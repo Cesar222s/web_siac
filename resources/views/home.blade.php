@@ -78,6 +78,50 @@
 
 {{-- Sección de clustering eliminada a solicitud del usuario --}}
 
+@if(isset($supervised) && ($supervised['available'] ?? false))
+<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(45,232,255,.15),rgba(125,91,255,.15)); border:1px solid rgba(45,232,255,.35); padding:1.5rem; border-radius:24px;">
+    <h2 style="margin:0 0 .8rem;">Modelo Supervisado (KNN)</h2>
+    <p style="margin:0 0 .6rem;">Entrenado sobre {{ $supervised['records'] }} registros. Objetivo: {{ $supervised['objective'] }}.</p>
+    <p style="margin:0 0 .6rem;">Exactitud: <strong>{{ $supervised['accuracy'] }}%</strong>.</p>
+    <p style="font-size:.85rem; color:var(--text-dim); margin:0;">Matriz de confusión (resumen):
+        @php $labels = $supervised['labels']; $cm = $supervised['cm']; @endphp
+        @foreach($labels as $i => $lab)
+            <br>{{ $lab }} →
+            @foreach($labels as $j => $lab2)
+                {{ $cm[$i][$j] }}
+            @endforeach
+        @endforeach
+    </p>
+    <p style="margin-top:.8rem;">“Modelo supervisado (KNN) entrenado sobre {{ $supervised['records'] }} registros.”</p>
+@elseif(isset($supervised))
+    <div class="fade-in" style="margin-top:2rem; border:1px dashed rgba(255,255,255,.25); padding:1rem; border-radius:16px;">
+        <strong>Datos no disponibles:</strong> {{ $supervised['message'] ?? 'Sin detalles' }}
+    </div>
+@endif
+
+{{-- Mapa interactivo de puntos (Leaflet) --}}
+@if(isset($mapPoints) && count($mapPoints) > 0)
+<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(45,232,255,.12),rgba(125,91,255,.12)); border:1px solid rgba(45,232,255,.3); padding:1.5rem; border-radius:24px;">
+        <h2 style="margin:0 0 .8rem;">Mapa de Incidencias</h2>
+        <p style="margin:0 0 1rem; font-size:.95rem; color:var(--text-dim);">Visualiza zonas con mayor densidad de eventos; útil para identificar horas pico de riesgo y optimizar alertas.</p>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4QjV7g2W9SgZCkPWqsK0p12uglfL74E8JQvM2x3GHo=" crossorigin=""/>
+        <div id="siac-map" style="height:460px; border-radius:16px; border:1px solid rgba(125,91,255,.35);"></div>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCfXDiFk9G2zGx2u3VZ8GZp3ZaLx3bVQxZ9M4x3E=" crossorigin=""></script>
+        <script>
+            const points = @json($mapPoints);
+            const center = points.length ? points[0] : [20.6736, -103.344];
+            const map = L.map('siac-map').setView(center, 12);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            // Render puntos como círculos semi-transparente (heat-like)
+            points.forEach(([lat, lon]) => {
+                L.circle([lat, lon], { radius: 75, color: '#7D5BFF', fillColor: '#7D5BFF', fillOpacity: 0.25, weight: 1 }).addTo(map);
+            });
+        </script>
+</div>
+@endif
+
 <div style="margin-top:3.5rem; text-align:center;">
     <h2 style="font-size:clamp(1.6rem,2rem,2.2rem); margin-bottom:2.5rem; background:linear-gradient(120deg,var(--text),var(--text-dim)); -webkit-background-clip:text; background-clip:text; color:transparent;">Características principales</h2>
 </div>
