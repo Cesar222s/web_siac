@@ -26,6 +26,7 @@ class DashboardController extends Controller
             'clusters' => $result['centroids'] ?? [],
             'counts' => $result['counts'] ?? [],
             'points' => $result['points'] ?? [],
+            'columns' => $result['columns'] ?? [],
         ]);
     }
 }

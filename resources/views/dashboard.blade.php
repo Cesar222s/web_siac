@@ -26,7 +26,16 @@
     <p>Se identificaron {{ $zonesCount }} zonas críticas con mayor incidencia de accidentes.</p>
     <ul>
       @foreach($clusters as $i => $c)
-        <li>Zona {{ $i+1 }}: Centroide (lat: {{ $c[0] ?? '?' }}, lon: {{ $c[1] ?? '?' }}) — {{ $counts[$i] ?? 0 }} puntos</li>
+        @php
+          $label0 = $columns[0] ?? 'dim0';
+          $label1 = $columns[1] ?? 'dim1';
+        @endphp
+        <li>
+          Zona {{ $i+1 }}:
+          Centroide ({{ $label0 }}: {{ is_array($c) ? ($c[0] ?? '?') : '?' }},
+          {{ $label1 }}: {{ is_array($c) ? ($c[1] ?? '?') : '?' }}) —
+          {{ $counts[$i] ?? 0 }} puntos
+        </li>
       @endforeach
     </ul>
   </div>

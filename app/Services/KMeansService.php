@@ -26,8 +26,8 @@ class KMeansService
             ];
         }
 
-        // Cache original sin incluir k (simplificado)
-        $cacheKey = 'kmeans_atus_2017_v1';
+        // Cache incluyendo k para evitar mezclar resultados
+        $cacheKey = 'kmeans_atus_2017_v1_k_' . $this->k;
         return Cache::remember($cacheKey, now()->addMinutes(30), function () {
             $rows = $this->readCsv($this->filePath, 5000); // limitar por memoria
             if (count($rows) < $this->k) {
@@ -36,7 +36,8 @@ class KMeansService
                     'message' => 'Datos insuficientes para clustering',
                 ];
             }
-            $numericColumns = $this->detectNumericColumns($rows);
+            // Priorizar columnas geográficas si existen
+            $numericColumns = $this->detectGeoColumns($rows);
             if (empty($numericColumns)) {
                 return [
                     'available' => false,
@@ -59,17 +60,66 @@ class KMeansService
     {
         $handle = fopen($path, 'r');
         if (!$handle) return [];
-        $header = fgetcsv($handle);
+        // Detectar delimitador (coma o punto y coma)
+        $firstLine = fgets($handle);
+        if ($firstLine === false) { fclose($handle); return []; }
+        $delimiter = (substr_count($firstLine, ';') > substr_count($firstLine, ',')) ? ';' : ',';
+        // Retroceder al inicio y leer con el delimitador detectado
+        rewind($handle);
+        $header = fgetcsv($handle, 0, $delimiter);
         $rows = [];
         $count = 0;
-        while (($data = fgetcsv($handle)) !== false) {
+        while (($data = fgetcsv($handle, 0, $delimiter)) !== false) {
             if ($header && count($data) === count($header)) {
-                $rows[] = array_combine($header, $data);
+                // Normalizar decimales con coma a punto
+                $normalized = [];
+                foreach ($header as $i => $col) {
+                    $val = $data[$i];
+                    // Reemplazar coma decimal por punto si aplica
+                    if (is_string($val) && preg_match('/^\d+,\d+$/', trim($val))) {
+                        $val = str_replace(',', '.', $val);
+                    }
+                    $normalized[$col] = $val;
+                }
+                $rows[] = $normalized;
             }
             if (++$count >= $limit) break;
         }
         fclose($handle);
         return $rows;
+    }
+
+    protected function detectGeoColumns(array $rows): array
+    {
+        // Si existen columnas típicas de coordenadas, usarlas exclusivamente
+        $candidates = [
+            ['lat', 'lon'],
+            ['latitude', 'longitude'],
+            ['Latitud', 'Longitud'],
+            ['LATITUD', 'LONGITUD'],
+        ];
+        $columns = array_keys($rows[0] ?? []);
+        foreach ($candidates as $pair) {
+            if (in_array($pair[0], $columns, true) && in_array($pair[1], $columns, true)) {
+                // Validar que ambas sean numéricas en al menos algunas filas
+                $valid = 0; $checks = 0;
+                foreach ($rows as $r) {
+                    $a = trim((string)$r[$pair[0]]);
+                    $b = trim((string)$r[$pair[1]]);
+                    if ($a !== '' && $b !== '') {
+                        $a = preg_replace('/,/', '.', $a);
+                        $b = preg_replace('/,/', '.', $b);
+                        if (is_numeric($a) && is_numeric($b)) { $valid++; }
+                    }
+                    if (++$checks >= 100) break;
+                }
+                if ($valid > 10) {
+                    return $pair; // usar sólo lat/lon
+                }
+            }
+        }
+        // Si no hay lat/lon, caer al detector genérico de numéricas
+        return $this->detectNumericColumns($rows);
     }
 
     protected function detectNumericColumns(array $rows): array
@@ -97,7 +147,9 @@ class KMeansService
         foreach ($rows as $r) {
             $vec = [];
             foreach ($numericColumns as $c) {
-                $vec[] = (float)$r[$c];
+                $val = trim((string)$r[$c]);
+                if (preg_match('/^\d+,\d+$/', $val)) { $val = str_replace(',', '.', $val); }
+                $vec[] = (float)$val;
             }
             $vectors[] = $vec;
         }
