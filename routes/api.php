@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RiskController;
 use App\Http\Controllers\Api\AuthApiController;
 
 /*
@@ -19,3 +20,8 @@ Route::post('/login', [AuthApiController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Riesgo personalizado (BigQuery NHTSA)
+Route::get('/risk/score', [RiskController::class, 'score']);
+Route::get('/risk/hotspots', [RiskController::class, 'hotspots']);
+Route::get('/risk/times', [RiskController::class, 'times']);
