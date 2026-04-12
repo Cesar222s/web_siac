@@ -60,3 +60,20 @@ Route::post('/password/reset', [\App\Http\Controllers\PasswordResetController::c
 // Dashboard deshabilitado según indicación
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+
+// Ruta de diagnóstico de base de datos
+Route::get('/debug-db', function() {
+    try {
+        $result = DB::connection('mongodb')->getMongoClient()->listDatabases();
+        return response()->json([
+            'status' => 'Conexión exitosa a MongoDB Atlas',
+            'databases' => $result
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'Error de conexión',
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
+});
