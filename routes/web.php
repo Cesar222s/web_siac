@@ -10,6 +10,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RiskAnalysisController;
 // use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route as FacadeRoute;
+use Illuminate\Support\Facades\DB;
+
+// Ruta de prueba simple
+Route::get('/ping', function() {
+    return 'pong';
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -61,19 +67,35 @@ Route::post('/password/reset', [\App\Http\Controllers\PasswordResetController::c
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
-// Ruta de diagnóstico de base de datos
+// Ruta de diagnóstico de base de datos mejorada
 Route::get('/debug-db', function() {
     try {
+        $diagnostics = [
+            'php_version' => PHP_VERSION,
+            'mongodb_extension_loaded' => extension_loaded('mongodb'),
+            'env' => config('app.env'),
+            'app_url' => config('app.url'),
+        ];
+
+        if (!extension_loaded('mongodb')) {
+            throw new \Error("La extensión 'mongodb' de PHP NO está cargada en el servidor.");
+        }
+
         $result = DB::connection('mongodb')->getMongoClient()->listDatabases();
+        
         return response()->json([
             'status' => 'Conexión exitosa a MongoDB Atlas',
+            'diagnostics' => $diagnostics,
             'databases' => $result
         ]);
-    } catch (\Exception $e) {
+    } catch (\Throwable $e) {
         return response()->json([
-            'status' => 'Error de conexión',
+            'status' => 'Error de diagnóstico',
+            'diagnostics' => $diagnostics ?? 'No se pudo cargar la info básica',
             'error' => $e->getMessage(),
-            'trace' => $e->getTraceAsString()
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => explode("\n", $e->getTraceAsString())
         ], 500);
     }
 });
