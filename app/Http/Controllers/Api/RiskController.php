@@ -8,6 +8,61 @@ use App\Services\BigQueryNhtsaService;
 
 class RiskController extends Controller
 {
+    public function analysis(Request $request)
+    {
+        // Map inputs from profile fields
+        $driverAge = $request->input('driver_age');
+        $expYears = $request->input('experience_years');
+        $usualLocation = trim((string)$request->input('usual_location', ''));
+        $state = null; $city = null; $edo = null; $mpio = null;
+        if ($usualLocation) {
+            $parts = array_map('trim', explode(',', $usualLocation));
+            if (count($parts) >= 2) { $state = $parts[0]; $city = $parts[1]; $edo = $parts[0]; $mpio = $parts[1]; }
+            else { $state = $usualLocation; $edo = $usualLocation; }
+        }
+        $usualHours = $request->input('usual_hours');
+
+        $python = env('PYTHON_EXE', 'python');
+        $script = base_path('python/risk_analysis.py');
+        $projectId = env('BQP_PROJECT_ID', 'bigquery-public-data');
+        $dataset = env('BQP_DATASET', 'nhtsa_traffic_fatalities');
+        $table = env('BQP_TABLE', 'fatalities');
+        $keyfile = env('BIGQUERY_KEYFILE', '');
+
+        $cmd = sprintf('%s %s --driver_age %s --experience_years %s --state_name %s --city %s --usual_hours %s --project_id %s --dataset %s --table %s %s %s %s',
+            escapeshellcmd($python),
+            escapeshellarg($script),
+            escapeshellarg((string)$driverAge),
+            escapeshellarg((string)$expYears),
+            escapeshellarg((string)$state),
+            escapeshellarg((string)$city),
+            escapeshellarg((string)$usualHours),
+            escapeshellarg($projectId),
+            escapeshellarg($dataset),
+            escapeshellarg($table),
+            $keyfile ? ('--keyfile ' . escapeshellarg($keyfile)) : '',
+            $edo ? ('--edo ' . escapeshellarg($edo)) : '',
+            $mpio ? ('--mpio ' . escapeshellarg($mpio)) : ''
+        );
+
+        $output = [];
+        $exitCode = 0;
+        @exec($cmd, $output, $exitCode);
+        if ($exitCode !== 0 || empty($output)) {
+            return response()->json([
+                'error' => 'No se pudo ejecutar el análisis en Python.',
+                'details' => $exitCode,
+            ], 500);
+        }
+        $json = json_decode(implode("\n", $output), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return response()->json([
+                'error' => 'Respuesta inválida del análisis en Python.',
+                'raw' => implode("\n", $output),
+            ], 500);
+        }
+        return response()->json($json);
+    }
     public function score(Request $request)
     {
         $svc = new BigQueryNhtsaService();

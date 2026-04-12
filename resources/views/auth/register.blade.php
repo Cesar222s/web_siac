@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title','Registro')
 @section('content')
-<div class="card fade-in glow" style="max-width:560px; margin:0 auto; position:relative; overflow:visible;">
-    <div style="position:absolute; top:-70px; left:-70px; width:220px; height:220px; background:radial-gradient(circle, rgba(255,95,170,.3), transparent 70%); filter:blur(55px); z-index:-1;"></div>
+<div class="card fade-in glow reveal" style="max-width:560px; margin:0 auto; position:relative; overflow:visible;">
+    <div style="position:absolute; top:-70px; left:-70px; width:220px; height:220px; background:radial-gradient(circle, rgba(245,158,11,.3), transparent 70%); filter:blur(55px); z-index:-1;"></div>
     <div style="text-align:center; margin-bottom:2rem;">
         <div style="display:inline-flex; align-items:center; justify-content:center; margin-bottom:1rem;">
             <img src="{{ asset('images/auth-security.svg') }}" alt="Seguridad" style="width:120px; height:120px;" class="float">
@@ -34,7 +34,7 @@
             <input type="password" name="password" id="password" placeholder="Ej: MiClave123" required>
             @error('password')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
             
-            <div id="password-requirements" style="margin-top:.8rem; padding:.9rem; background:rgba(125,91,255,.08); border:1px solid rgba(125,91,255,.2); border-radius:12px; font-size:.8rem;">
+            <div id="password-requirements" style="margin-top:.8rem; padding:.9rem; background:rgba(99,102,241,.08); border:1px solid rgba(99,102,241,.2); border-radius:12px; font-size:.8rem;">
                 <div style="margin-bottom:.5rem; font-weight:600; color:var(--text); display:flex; align-items:center; gap:.4rem;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px;">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -59,6 +59,31 @@
             <label for="password_confirmation">Confirmar contraseña</label>
             <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repite tu contraseña" required>
             <small id="password-match" style="display:none; margin-top:.5rem; font-size:.8rem;"></small>
+        </div>
+        <div style="margin:1.5rem 0; border-top:1px solid var(--border);"></div>
+        <h3>Perfil de riesgo de conducción</h3>
+        <div style="display:grid; gap:1.3rem; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); margin-top:.6rem;">
+            <div class="group">
+                <label for="driver_age">Edad del conductor</label>
+                <input type="number" name="driver_age" id="driver_age" value="{{ old('driver_age') }}" placeholder="Ej: 35" min="16" max="90" required>
+                @error('driver_age')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
+            </div>
+            <div class="group">
+                <label for="experience_years">Años de experiencia</label>
+                <input type="number" name="experience_years" id="experience_years" value="{{ old('experience_years') }}" placeholder="Ej: 10" min="0" max="70" required>
+                @error('experience_years')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
+            </div>
+        </div>
+        <div class="group">
+            <label for="usual_location">Ubicación habitual (Estado/Ciudad)</label>
+            <input type="text" name="usual_location" id="usual_location" value="{{ old('usual_location') }}" placeholder="Ej: Texas, Houston" required>
+            @error('usual_location')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
+        </div>
+        <div class="group">
+            <label for="usual_hours">Horarios de uso del vehículo</label>
+            <input type="text" name="usual_hours" id="usual_hours" value="{{ old('usual_hours') }}" placeholder="06:00-09:00,18:00" pattern="^\s*(?:([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]|([01]?[0-9]|2[0-3]):[0-5][0-9])\s*(?:,\s*(?:([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]|([01]?[0-9]|2[0-3]):[0-5][0-9]))*\s*$" title="Usa rangos u horas en formato 24h: Ej. 06:00-09:00,18:00" required />
+            <small style="color:var(--text-dim)">Formato estricto: rangos u horas 24h separados por coma. Ejemplo: <code>06:00-09:00,18:00</code></small>
+            @error('usual_hours')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
         </div>
         <button class="btn glow" style="width:100%; font-size:1rem; padding:1.1rem; margin-top:.8rem;">
             <span style="display:flex; align-items:center; justify-content:center; gap:.6rem;">
@@ -118,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateRequirement(element, isValid) {
         const icon = element.querySelector('.req-icon');
         if (isValid) {
-            element.style.color = '#2de8ff';
+            element.style.color = '#10B981';
             icon.textContent = '✓';
             icon.style.fontWeight = 'bold';
         } else {
@@ -141,10 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (password === confirm) {
             matchMessage.textContent = '✓ Las contraseñas coinciden';
-            matchMessage.style.color = '#2de8ff';
+            matchMessage.style.color = '#10B981';
         } else {
             matchMessage.textContent = '✗ Las contraseñas no coinciden';
-            matchMessage.style.color = '#ff5faa';
+            matchMessage.style.color = '#F59E0B';
         }
     }
 });

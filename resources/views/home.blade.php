@@ -4,57 +4,57 @@
 <style>
     .stats-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.8rem; margin:3rem 0;}
     .stat-card {background:linear-gradient(135deg,rgba(29,39,56,.85),rgba(38,52,74,.5)); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:1.8rem 1.5rem; text-align:center; position:relative; overflow:hidden; transition:.3s;}
-    .stat-card:before {content:''; position:absolute; top:-50%; right:-30%; width:200px; height:200px; background:radial-gradient(circle,rgba(125,91,255,.2),transparent 70%); filter:blur(25px);}
+    .stat-card:before {content:''; position:absolute; top:-50%; right:-30%; width:200px; height:200px; background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%); filter:blur(25px);}
     .stat-card .stat-number {font-size:2.8rem; font-weight:700; background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; margin:.5rem 0; position:relative; z-index:1;}
     .stat-card .stat-label {font-size:.85rem; color:var(--text-dim); letter-spacing:.08em; position:relative; z-index:1;}
-    .stat-card:hover {transform:translateY(-4px); box-shadow:0 20px 45px -15px rgba(125,91,255,.4);}
+    .stat-card:hover {transform:translateY(-4px); box-shadow:0 20px 45px -15px rgba(99,102,241,.4);}
     .tech-stack {display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:2.5rem 0;}
     .tech-badge {background:var(--surface-soft); padding:.65rem 1.2rem; border-radius:25px; font-size:.82rem; border:1px solid rgba(255,255,255,.06); display:flex; align-items:center; gap:.5rem; transition:.25s;}
     .tech-badge svg {width:18px; height:18px; color:var(--accent);}
-    .tech-badge:hover {transform:scale(1.05); border-color:var(--accent); box-shadow:0 8px 20px -8px rgba(125,91,255,.5);}
-    .cta-section {background:linear-gradient(135deg,rgba(125,91,255,.15),rgba(45,232,255,.1)); border:1px solid rgba(125,91,255,.2); border-radius:24px; padding:3rem 2.5rem; text-align:center; margin:4rem 0; position:relative; overflow:hidden;}
-    .cta-section:before {content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%, rgba(255,95,170,.15), transparent 60%); filter:blur(40px);}
+    .tech-badge:hover {transform:scale(1.05); border-color:var(--accent); box-shadow:0 8px 20px -8px rgba(99,102,241,.5);}
+    .cta-section {background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(16,185,129,.1)); border:1px solid rgba(99,102,241,.2); border-radius:24px; padding:3rem 2.5rem; text-align:center; margin:4rem 0; position:relative; overflow:hidden;}
+    .cta-section:before {content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%, rgba(245,158,11,.15), transparent 60%); filter:blur(40px);}
     .cta-section h2 {font-size:2rem; margin-bottom:1rem; position:relative; z-index:1;}
     .cta-section p {font-size:1.05rem; color:var(--text-dim); margin-bottom:2rem; position:relative; z-index:1;}
     @media (max-width:780px){.stats-grid{grid-template-columns:repeat(2,1fr); gap:1.2rem;} .stat-card .stat-number{font-size:2.2rem;}}
 </style>
-<div class="hero fade-in glow" style="position:relative;">
-    <div style="position:absolute; top:20px; right:30px; width:180px; height:180px; background:radial-gradient(circle, rgba(125,91,255,.3), transparent 70%); filter:blur(40px); animation:float 8s ease-in-out infinite;"></div>
-    <div style="position:absolute; bottom:30px; left:40px; width:220px; height:220px; background:radial-gradient(circle, rgba(255,95,170,.25), transparent 70%); filter:blur(45px); animation:float 10s ease-in-out infinite reverse;"></div>
+<div class="hero fade-in glow reveal" style="position:relative;">
+    <div style="position:absolute; top:20px; right:30px; width:180px; height:180px; background:radial-gradient(circle, rgba(99,102,241,.3), transparent 70%); filter:blur(40px); animation:float 8s ease-in-out infinite;"></div>
+    <div style="position:absolute; bottom:30px; left:40px; width:220px; height:220px; background:radial-gradient(circle, rgba(245,158,11,.25), transparent 70%); filter:blur(45px); animation:float 10s ease-in-out infinite reverse;"></div>
     <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
         <img src="{{ asset('images/logo.svg') }}" alt="SIAC Logo" style="width:150px; height:150px; position:relative; z-index:1;" class="float">
     </div>
-    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC – Sistema Inteligente de Asistencia en Conducción</h1>
-    <p style="position:relative; z-index:1; font-size:1.12rem;">Tecnología diseñada para tu seguridad y confianza en el camino. Monitoreo inteligente en tiempo real.</p>
+    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC: Inteligencia al Volante</h1>
+    <p style="position:relative; z-index:1; font-size:1.12rem;">Monitoreo de **fatiga con IA**, alertas en **Smartwatch** y asistencia avanzada para una conducción sin riesgos.</p>
     <div class="actions" style="position:relative; z-index:1;">
-        <a href="{{ route('about') }}" class="btn btn-secondary">Conoce más</a>
-        <a href="{{ route('register') }}" class="btn">Comenzar ahora</a>
-        <a href="{{ route('login') }}" class="btn-outline">Iniciar sesión</a>
+        <a href="{{ route('about') }}" class="btn btn-secondary">Explorar tecnología</a>
+        <a href="{{ route('register') }}" class="btn">Empezar ahora</a>
+        <a href="{{ route('login') }}" class="btn-outline">Acceso conductor</a>
     </div>
     <img src="{{ asset('images/hero-car.svg') }}" alt="SIAC Sistema" style="position:absolute;bottom:-50px;right:-50px;opacity:.15;width:500px;height:auto;" class="float">
 </div>
 
-<div class="stats-grid fade-in" style="animation-delay:.1s;">
+<div class="stats-grid fade-in reveal" style="animation-delay:.1s;">
     <div class="stat-card">
         <div class="stat-number">99.9%</div>
-        <div class="stat-label">DISPONIBILIDAD</div>
+        <div class="stat-label">UPTIME DEL SISTEMA</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">&lt;50ms</div>
-        <div class="stat-label">TIEMPO DE RESPUESTA</div>
+        <div class="stat-number">&lt;45ms</div>
+        <div class="stat-label">LATENCIA DE ALERTAS</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">MONITOREO ACTIVO</div>
+        <div class="stat-number">Wear OS</div>
+        <div class="stat-label">SYNC INTEGRAL</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">SENSORES INTEGRADOS</div>
+        <div class="stat-number">IA</div>
+        <div class="stat-label">DETECCIÓN DE FATIGA</div>
     </div>
 </div>
 
-<div class="fade-in" style="margin-top:2.2rem; background:linear-gradient(135deg,rgba(125,91,255,.18),rgba(45,232,255,.15)); border:1px solid rgba(125,91,255,.35); padding:2rem 1.5rem; border-radius:24px; position:relative; overflow:hidden;">
-    <div style="position:absolute; inset:0; background:radial-gradient(circle at 75% 30%, rgba(255,95,170,.25), transparent 60%); filter:blur(40px); opacity:.6;"></div>
+<div class="fade-in" style="margin-top:2.2rem; background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(16,185,129,.15)); border:1px solid rgba(99,102,241,.35); padding:2rem 1.5rem; border-radius:24px; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; background:radial-gradient(circle at 75% 30%, rgba(245,158,11,.25), transparent 60%); filter:blur(40px); opacity:.6;"></div>
     <h2 style="margin:0 0 1rem; position:relative; z-index:1; font-size:1.5rem; display:flex; align-items:center; gap:.6rem;">
         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
         Informe Analítico de SIAC
@@ -79,7 +79,7 @@
 {{-- Sección de clustering eliminada a solicitud del usuario --}}
 
 @if(isset($supervised) && ($supervised['available'] ?? false))
-<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(45,232,255,.15),rgba(125,91,255,.15)); border:1px solid rgba(45,232,255,.35); padding:1.5rem; border-radius:24px;">
+<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(99,102,241,.15)); border:1px solid rgba(16,185,129,.35); padding:1.5rem; border-radius:24px;">
     <h2 style="margin:0 0 .8rem;">Modelo Supervisado (KNN)</h2>
     <p style="margin:0 0 .6rem;">Entrenado sobre {{ $supervised['records'] }} registros. Objetivo: {{ $supervised['objective'] }}.</p>
     <p style="margin:0 0 .6rem;">Exactitud: <strong>{{ $supervised['accuracy'] }}%</strong>.</p>
@@ -101,11 +101,11 @@
 
 {{-- Mapa interactivo de puntos (Leaflet) --}}
 @if(isset($mapPoints) && count($mapPoints) > 0)
-<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(45,232,255,.12),rgba(125,91,255,.12)); border:1px solid rgba(45,232,255,.3); padding:1.5rem; border-radius:24px;">
+<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(99,102,241,.12)); border:1px solid rgba(16,185,129,.3); padding:1.5rem; border-radius:24px;">
         <h2 style="margin:0 0 .8rem;">Mapa de Incidencias</h2>
         <p style="margin:0 0 1rem; font-size:.95rem; color:var(--text-dim);">Visualiza zonas con mayor densidad de eventos; útil para identificar horas pico de riesgo y optimizar alertas.</p>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4QjV7g2W9SgZCkPWqsK0p12uglfL74E8JQvM2x3GHo=" crossorigin=""/>
-        <div id="siac-map" style="height:460px; border-radius:16px; border:1px solid rgba(125,91,255,.35);"></div>
+        <div id="siac-map" style="height:460px; border-radius:16px; border:1px solid rgba(99,102,241,.35);"></div>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCfXDiFk9G2zGx2u3VZ8GZp3ZaLx3bVQxZ9M4x3E=" crossorigin=""></script>
         <script>
             const points = @json($mapPoints);
@@ -116,7 +116,7 @@
             }).addTo(map);
             // Render puntos como círculos semi-transparente (heat-like)
             points.forEach(([lat, lon]) => {
-                L.circle([lat, lon], { radius: 75, color: '#7D5BFF', fillColor: '#7D5BFF', fillOpacity: 0.25, weight: 1 }).addTo(map);
+                L.circle([lat, lon], { radius: 75, color: '#6366F1', fillColor: '#6366F1', fillOpacity: 0.25, weight: 1 }).addTo(map);
             });
         </script>
 </div>
@@ -126,34 +126,34 @@
     <h2 style="font-size:clamp(1.6rem,2rem,2.2rem); margin-bottom:2.5rem; background:linear-gradient(120deg,var(--text),var(--text-dim)); -webkit-background-clip:text; background-clip:text; color:transparent;">Características principales</h2>
 </div>
 
-<div class="grid fade-in" style="animation-delay:.15s;">
+<div class="grid fade-in reveal" style="animation-delay:.15s;">
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
             <img src="{{ asset('images/icon-monitor.svg') }}" alt="Monitoreo" style="width:80px; height:80px;">
         </div>
-        <h2>Monitoreo inteligente</h2>
-        <p>Seguimiento continuo del estado del conductor y entorno vehicular para anticipar riesgos y mejorar la experiencia de conducción.</p>
+        <h2>Análisis de Fatiga</h2>
+        <p>Algoritmos de visión artificial monitorean patrones oculares y bostezos para prevenir siniestros por somnolencia en tiempo real.</p>
     </div>
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
             <img src="{{ asset('images/icon-security.svg') }}" alt="Seguridad" style="width:80px; height:80px;">
         </div>
-        <h2>Seguridad avanzada</h2>
-        <p>Arquitectura robusta enfocada en confiabilidad, protección de datos y cumplimiento de estándares de seguridad automotriz.</p>
+        <h2>Ecosistema Wearable</h2>
+        <p>Integración nativa con Smartwatches Wear OS. Siente una vibración táctil inmediata al detectar una proximidad crítica o fatiga severa.</p>
     </div>
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
             <img src="{{ asset('images/icon-alert.svg') }}" alt="Alertas" style="width:80px; height:80px;">
         </div>
-        <h2>Alertas preventivas</h2>
-        <p>Notificaciones oportunas y contextuales que ayudan a evitar incidentes antes de que sucedan.</p>
+        <h2>Zonas de Riesgo</h2>
+        <p>Clustering inteligente de datos históricos para identificar puntos ciegos y cruces peligrosos antes de que llegues a ellos.</p>
     </div>
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
             <img src="{{ asset('images/icon-sensor.svg') }}" alt="Sensores" style="width:80px; height:80px;">
         </div>
-        <h2>Integración de sensores</h2>
-        <p>Datos unificados provenientes de múltiples sensores para una visión clara del estado vehicular y contexto de conducción.</p>
+        <h2>Sensor Fusion IoT</h2>
+        <p>Combinación de sensores de proximidad ultrasónicos y cámaras para una cobertura perimetral de 360 grados en tu vehículo.</p>
     </div>
 </div>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RiskAnalysisController;
 // use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route as FacadeRoute;
 
@@ -38,6 +39,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['profile.auth'])->group(function () {
     Route::get('/perfil', [ProfileController::class, 'show'])->name('profile');
+    // Risk analysis
+    Route::get('/perfil/riesgo', [RiskAnalysisController::class, 'show'])->name('profile.risk.show');
+    Route::post('/perfil/riesgo', [RiskAnalysisController::class, 'analyze'])->name('profile.risk.analyze');
 });
 
 // Admin Routes - Requiere autenticación y rol de administrador

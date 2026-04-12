@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('title','Login')
 @section('content')
-<div class="card fade-in glow" style="max-width:520px; margin:0 auto; position:relative; overflow:visible;">
-    <div style="position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:radial-gradient(circle, rgba(125,91,255,.35), transparent 70%); filter:blur(50px); z-index:-1;"></div>
+<div class="card fade-in glow reveal" style="max-width:520px; margin:0 auto; position:relative; overflow:visible;">
+    <div style="position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:radial-gradient(circle, rgba(99,102,241,.35), transparent 70%); filter:blur(50px); z-index:-1;"></div>
     <div style="text-align:center; margin-bottom:2rem;">
         <div style="display:inline-flex; align-items:center; justify-content:center; margin-bottom:1rem;">
             <img src="{{ asset('images/auth-security.svg') }}" alt="Seguridad" style="width:120px; height:120px;" class="float">

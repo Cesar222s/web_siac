@@ -4,19 +4,19 @@
 <style>
     .dashboard-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; margin-bottom:2rem;}
     .metric-card {background:linear-gradient(135deg,rgba(29,39,56,.9),rgba(38,52,74,.6)); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1.5rem; position:relative; overflow:hidden;}
-    .metric-card:before {content:''; position:absolute; top:-50%; right:-30%; width:150px; height:150px; background:radial-gradient(circle,rgba(125,91,255,.2),transparent 70%); filter:blur(25px);}
+    .metric-card:before {content:''; position:absolute; top:-50%; right:-30%; width:150px; height:150px; background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%); filter:blur(25px);}
     .metric-value {font-size:2.5rem; font-weight:700; background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; margin:.5rem 0; position:relative;}
     .metric-label {font-size:.85rem; color:var(--text-dim); letter-spacing:.05em; position:relative;}
     .chart-container {background:var(--surface-soft); border-radius:18px; padding:2rem; margin-bottom:2rem; border:1px solid var(--border);}
     .predictions-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:2rem;}
     .prediction-item {background:rgba(125,91,255,.1); border:1px solid rgba(125,91,255,.3); border-radius:12px; padding:1rem; text-align:center;}
     .risk-badge {display:inline-block; padding:.4rem .8rem; border-radius:20px; font-size:.75rem; font-weight:600;}
-    .risk-high {background:rgba(255,95,170,.2); color:#ff5faa; border:1px solid rgba(255,95,170,.4);}
-    .risk-medium {background:rgba(255,183,77,.2); color:#ffb74d; border:1px solid rgba(255,183,77,.4);}
-    .risk-low {background:rgba(45,232,255,.2); color:#2de8ff; border:1px solid rgba(45,232,255,.4);}
+    .risk-high {background:rgba(245,158,11,.2); color:#F59E0B; border:1px solid rgba(245,158,11,.4);}
+    .risk-medium {background:rgba(99,102,241,.2); color:#6366F1; border:1px solid rgba(99,102,241,.4);}
+    .risk-low {background:rgba(16,185,129,.2); color:#10B981; border:1px solid rgba(16,185,129,.4);}
 </style>
 
-<div class="fade-in">
+<div class="fade-in reveal">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
         <h1 style="margin:0; font-size:2rem;">Dashboard de Análisis</h1>
         <div style="display:flex; gap:1rem;">
@@ -119,11 +119,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 const chartColors = {
-    primary: '#7d5bff',
-    accent: '#2de8ff',
-    secondary: '#ff5faa',
-    success: '#4caf50',
-    warning: '#ffb74d',
+    primary: '#6366F1',
+    accent: '#10B981',
+    secondary: '#F59E0B',
+    success: '#10B981',
+    warning: '#F59E0B',
 };
 
 // Datos desde PHP

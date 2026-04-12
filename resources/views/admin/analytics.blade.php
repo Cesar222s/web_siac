@@ -5,12 +5,12 @@
     .analytics-header {display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;}
     .stats-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-bottom:2rem;}
     .stat-card {background:var(--surface-soft); border:1px solid var(--border); border-radius:16px; padding:1.5rem; transition:all .3s;}
-    .stat-card:hover {transform:translateY(-4px); box-shadow:0 8px 24px rgba(125,91,255,.2);}
+    .stat-card:hover {transform:translateY(-4px); box-shadow:0 8px 24px rgba(99,102,241,.2);}
     .stat-icon {width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem;}
-    .icon-purple {background:rgba(125,91,255,.15); color:var(--primary);}
-    .icon-cyan {background:rgba(45,232,255,.15); color:var(--accent);}
-    .icon-pink {background:rgba(255,95,170,.15); color:var(--secondary);}
-    .icon-green {background:rgba(76,175,80,.15); color:#4caf50;}
+    .icon-purple {background:rgba(99,102,241,.15); color:var(--primary);}
+    .icon-cyan {background:rgba(16,185,129,.15); color:var(--accent);}
+    .icon-pink {background:rgba(245,158,11,.15); color:var(--secondary);}
+    .icon-green {background:rgba(16,185,129,.15); color:#10B981;}
     .chart-row {display:grid; grid-template-columns:2fr 1fr; gap:1.5rem; margin-bottom:2rem;}
     .chart-box {background:var(--surface-soft); border-radius:18px; padding:2rem; border:1px solid var(--border);}
     .risk-list {display:flex; flex-direction:column; gap:.8rem;}
@@ -19,7 +19,7 @@
     @media(max-width:900px){.chart-row{grid-template-columns:1fr;}}
 </style>
 
-<div class="fade-in">
+<div class="fade-in reveal">
     <div class="analytics-header">
         <h1 style="margin:0; font-size:2rem;">Analytics Avanzado</h1>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
@@ -129,7 +129,7 @@
                 <div style="font-size:.85rem; color:var(--text-dim); line-height:1.6;">Predicción de riesgos basada en patrones históricos</div>
             </div>
             <div style="background:rgba(76,175,80,.08); border:1px solid rgba(76,175,80,.2); border-radius:10px; padding:1.2rem;">
-                <div style="font-weight:600; color:#4caf50; margin-bottom:.5rem;">Visualización de Datos</div>
+                <div style="font-weight:600; color:#10B981; margin-bottom:.5rem;">Visualización de Datos</div>
                 <div style="font-size:.85rem; color:var(--text-dim); line-height:1.6;">Chart.js para representación gráfica interactiva</div>
             </div>
         </div>
@@ -322,10 +322,10 @@ const monthlyData = @json($monthlyData);
 const riskAnalysis = @json($riskAnalysis);
 
 const chartColors = {
-    primary: '#7d5bff',
-    accent: '#2de8ff',
-    secondary: '#ff5faa',
-    success: '#4caf50',
+    primary: '#6366F1',
+    accent: '#10B981',
+    secondary: '#F59E0B',
+    success: '#10B981',
 };
 
 // Gráfica de tendencias mensuales

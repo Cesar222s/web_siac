@@ -1,0 +1,17 @@
+{
+  "name": "SIAC - Asistencia en Conducción",
+  "short_name": "SIAC",
+  "description": "Sistema Inteligente de Asistencia en Conducción. Monitoreo en tiempo real, seguridad avanzada y alertas inteligentes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b13",
+  "theme_color": "#070b13",
+  "icons": [
+    {
+      "src": "/images/logo.svg",
+      "sizes": "48x48 72x72 96x96 128x128 144x144 152x152 192x192 384x384 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

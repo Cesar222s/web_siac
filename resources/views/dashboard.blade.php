@@ -4,11 +4,11 @@
 <style>
   .grid {display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;}
   .card {background: var(--surface-soft); border:1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.2rem;}
-  .map {height: 420px; background: #0b1624; border-radius: 12px; border:1px solid rgba(125,91,255,.3); position:relative;}
-  .badge {display:inline-block; background: rgba(125,91,255,.15); border:1px solid rgba(125,91,255,.35); padding:.4rem .7rem; border-radius: 10px; font-size:.8rem;}
+  .map {height: 420px; background: #0b1624; border-radius: 12px; border:1px solid rgba(99,102,241,.3); position:relative;}
+  .badge {display:inline-block; background: rgba(99,102,241,.15); border:1px solid rgba(99,102,241,.35); padding:.4rem .7rem; border-radius: 10px; font-size:.8rem;}
 </style>
 
-<div style="display:flex; align-items:center; gap:.8rem; margin-bottom: 1rem;">
+<div class="reveal" style="display:flex; align-items:center; gap:.8rem; margin-bottom: 1rem;">
   <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
   <h1 style="margin:0;">Dashboard: Zonas Críticas ({{ request()->input('model','kmeans') === 'dbscan' ? 'DBSCAN' : 'K-Means' }})</h1>
 </div>
@@ -26,7 +26,7 @@
   </div>
 @endif
 
-<div class="grid">
+<div class="grid reveal">
   @if(!isset($available) || $available)
   <div class="card">
     <h2 style="margin-top:0;">Resumen</h2>
@@ -98,17 +98,17 @@
           // Zone circle
           const zone = L.circle([centroidLat, centroidLon], {
             radius: radius,
-            color: '#7D5BFF',
+            color: '#6366F1',
             weight: 1.5,
-            fillColor: '#7D5BFF',
+            fillColor: '#6366F1',
             fillOpacity: 0.18
           }).addTo(map);
           // Centroid marker
           const marker = L.circleMarker([centroidLat, centroidLon], {
             radius: 7,
-            color: '#7D5BFF',
+            color: '#6366F1',
             weight: 2,
-            fillColor: '#7D5BFF',
+            fillColor: '#6366F1',
             fillOpacity: 0.75
           }).addTo(map);
           const popupHtml = `
@@ -130,9 +130,9 @@
         if (Array.isArray(c) && c.length >= 2) {
           L.circleMarker([c[0], c[1]], {
             radius: 10,
-            color: '#FF7D7D',
+            color: '#F59E0B',
             weight: 3,
-            fillColor: '#FF7D7D',
+            fillColor: '#F59E0B',
             fillOpacity: 0.8
           }).addTo(map).bindPopup(`Top ${idx+1} — ${t.count} puntos`);
         }

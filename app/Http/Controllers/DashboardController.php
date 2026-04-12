@@ -29,10 +29,10 @@ class DashboardController extends Controller
                 $result = [
                     'available' => true,
                     'columns' => $columns,
-                    'centroids' => $res['centroids'],
-                    'counts' => $res['counts'],
+                    'centroids' => $res['centroids'] ?? [],
+                    'counts' => $res['counts'] ?? [],
                     'points' => $points,
-                    'top5' => $res['top5'],
+                    'top5' => $res['top5'] ?? [],
                 ];
             } else {
                 // Run simple k-means on lat/lon
@@ -62,10 +62,10 @@ class DashboardController extends Controller
                 $result = [
                     'available' => true,
                     'columns' => ['lat','lon'],
-                    'centroids' => $res['centroids'],
-                    'counts' => $res['counts'],
+                    'centroids' => $res['centroids'] ?? [],
+                    'counts' => $res['counts'] ?? [],
                     'points' => $points,
-                    'top5' => $res['top5'],
+                    'top5' => $res['top5'] ?? [],
                 ];
             } else {
                 $service = new KMeansService($filePath, $k, 25);
