@@ -1,4 +1,4 @@
-const CACHE_NAME = 'siac-cache-v1';
+const CACHE_NAME = 'siac-cache-v2';
 const urlsToCache = [
   '/',
   '/images/logo.svg',
@@ -15,13 +15,22 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Solo aplicar red-primero a solicitudes GET
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
+        // Clonamos la respuesta y la actualizamos en cache de fondo
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      })
+      .catch(() => {
+        // En caso de estar sin internet (Offline), sacamos la página de la caché
+        return caches.match(event.request);
       })
   );
 });
