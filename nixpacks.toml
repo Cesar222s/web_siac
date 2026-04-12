@@ -3,3 +3,7 @@
 
 [phases.setup]
     nixPkgs = ["...", "php82Extensions.mongodb"]
+
+[phases.install]
+    cmds = ["composer install", "php -m | grep mongodb"]
+
