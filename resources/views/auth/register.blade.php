@@ -137,7 +137,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Verificar coincidencia de contraseñas
+    // --- LÓGICA OFFLINE PWA ---
+    const registerForm = document.querySelector('form[action$="register"]');
+    
+    if (registerForm) {
+        registerForm.addEventListener('submit', async function(e) {
+            if (navigator.onLine) return; // Si hay internet, proceder normal
+
+            e.preventDefault();
+            console.log('PWA: Detectado registro offline. Guardando datos...');
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            // Guardar en IndexedDB
+            const db = await new Promise((resolve) => {
+                const req = indexedDB.open('siac_offline', 1);
+                req.onsuccess = () => resolve(req.result);
+            });
+
+            const tx = db.transaction('registrations', 'readwrite');
+            tx.objectStore('registrations').add({ formData: data, timestamp: new Date().getTime() });
+
+            await new Promise((resolve) => { tx.oncomplete = resolve; });
+
+            // UI: Mostrar mensaje de éxito offline
+            this.style.transition = 'opacity 0.5s ease';
+            this.style.opacity = '0';
+            setTimeout(() => {
+                this.innerHTML = `
+                    <div style="text-align:center; padding:2rem; background:rgba(16,185,129,.1); border:1px solid var(--success); border-radius:16px;" class="fade-in">
+                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--success)" stroke-width="2" style="margin-bottom:1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <h2 style="color:var(--success); margin:0 0 .5rem;">¡Perfil Guardado!</h2>
+                        <p style="color:var(--text); font-size:.95rem; margin-bottom:1.5rem;">Te has registrado en modo offline. Tus datos se enviarán automáticamente en cuanto recuperes la conexión.</p>
+                        <div style="background:rgba(255,255,255,.05); padding:.8rem; border-radius:10px; font-size:.8rem; color:var(--text-dim);">
+                            🔄 Sincronización pendiente detectada
+                        </div>
+                    </div>
+                `;
+                this.style.opacity = '1';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        });
+    }
+
+    // --- VALIDACIÓN DE FORMULARIO EXISTENTE ---
     confirmInput.addEventListener('input', checkPasswordMatch);
 
     function updateRequirement(element, isValid) {

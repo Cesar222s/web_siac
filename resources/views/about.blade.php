@@ -36,16 +36,7 @@
             <span class="pill">Tracking GPS</span><span class="pill">Leaflet Map</span><span class="pill">Precisión</span>
         </div>
     </div>
-    <div class="about-card reveal">
-        <h2>
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Previsión de Colisión
-        </h2>
-        <p>Algoritmos predictivos que analizan la trayectoria y velocidad para emitir alertas críticas en milisegundos.</p>
-        <div class="pill-set">
-            <span class="pill">Low Latency</span><span class="pill">Machine Learning</span>
-        </div>
-    </div>
+
     <div class="about-card reveal">
         <h2>
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -76,15 +67,6 @@
             <span class="pill">PWA</span><span class="pill">Android Native</span>
         </div>
     </div>
-    <div class="about-card reveal">
-        <h2>
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            Analítica de Riesgo
-        </h2>
-        <p>Dashboard avanzado para visualizar zonas calientes de accidentes y optimizar tus rutas diarias.</p>
-        <div class="pill-set">
-            <span class="pill">Heatmaps</span><span class="pill">Big Data</span>
-        </div>
-    </div>
+
 </div>
 @endsection

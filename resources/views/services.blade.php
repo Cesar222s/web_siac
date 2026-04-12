@@ -72,19 +72,7 @@
         </ul>
     </div>
 
-    <div class="service-item reveal">
-        <div style="display:flex; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/icon-support.svg') }}" alt="Analítica" style="width:70px; height:70px;" loading="lazy">
-        </div>
-        <h3>Analítica Predictiva</h3>
-        <p>Uso de Big Data para identificar patrones de tráfico y zonas críticas, permitiendo una planificación de rutas más segura.</p>
-        <ul class="service-features">
-            <li>Clustering de zonas de riesgo</li>
-            <li>Reportes periódicos de desempeño</li>
-            <li>Optimización de rutas por seguridad</li>
-            <li>Exportación de datos analíticos</li>
-        </ul>
-    </div>
+
 </div>
 
 <div style="background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(245,158,11,.08));border:1px solid rgba(99,102,241,.18);border-radius:24px;padding:3rem 2.5rem;text-align:center;margin:4rem 0;position:relative;overflow:hidden;" class="fade-in reveal">

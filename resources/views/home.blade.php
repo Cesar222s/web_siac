@@ -24,7 +24,7 @@
     <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
         <img src="{{ asset('images/logo.svg') }}" alt="SIAC Logo" style="width:150px; height:150px; position:relative; z-index:1;" class="float" loading="eager">
     </div>
-    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC: Seguridad Biométrica al Volante</h1>
+    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC</h1>
     <p style="position:relative; z-index:1; font-size:1.12rem;">Monitoreo de **frecuencia cardíaca (BPM)** y niveles de actividad desde tu reloj inteligente para detectar fatiga y enviar **alertas precisas con GPS** a tus contactos.</p>
     <div class="actions" style="position:relative; z-index:1;">
         <a href="{{ route('about') }}" class="btn btn-secondary">Conocer más</a>
@@ -53,51 +53,7 @@
     </div>
 </div>
 
-<div class="fade-in" style="margin-top:2.2rem; background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(16,185,129,.15)); border:1px solid rgba(99,102,241,.35); padding:2rem 1.5rem; border-radius:24px; position:relative; overflow:hidden;">
-    <div style="position:absolute; inset:0; background:radial-gradient(circle at 75% 30%, rgba(245,158,11,.25), transparent 60%); filter:blur(40px); opacity:.6;"></div>
-    <h2 style="margin:0 0 1rem; position:relative; z-index:1; font-size:1.5rem; display:flex; align-items:center; gap:.6rem;">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
-        Informe Analítico de SIAC
-    </h2>
-    <p style="margin:0 0 1.2rem; font-size:.95rem; color:var(--text-dim); max-width:860px; position:relative; z-index:1;">Explora nuestro tablero de análisis para visualizar patrones de uso, tendencias de comportamiento y oportunidades de mejora en la asistencia de conducción. Este informe ayuda a tomar decisiones basadas en datos reales y a priorizar acciones de seguridad.</p>
-    <ul style="list-style:none; padding:0; margin:0 0 1.2rem; display:grid; gap:.4rem; font-size:.8rem; position:relative; z-index:1;">
-        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Identifica horas pico de riesgo y fatiga.</li>
-        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Optimiza alertas según comportamiento histórico.</li>
-        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Prioriza mejoras para la experiencia del conductor.</li>
-        <li style="display:flex; align-items:center; gap:.5rem;"><span style="color:var(--accent); font-weight:600;">•</span> Refuerza decisiones con métricas verificables.</li>
-    </ul>
-    <div style="display:flex; gap:1rem; flex-wrap:wrap; position:relative; z-index:1;">
-        <a href="https://lookerstudio.google.com/reporting/d46e76c2-3be2-4391-8352-dffd7f19b978" target="_blank" rel="noopener" class="btn" style="display:inline-flex; align-items:center; gap:.5rem;">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 21H3v-7"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
-            Ver Informe
-        </a>
-    </div>
-    
-</div>
 
-
-{{-- Sección de clustering eliminada a solicitud del usuario --}}
-
-@if(isset($supervised) && ($supervised['available'] ?? false))
-<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(99,102,241,.15)); border:1px solid rgba(16,185,129,.35); padding:1.5rem; border-radius:24px;">
-    <h2 style="margin:0 0 .8rem;">Modelo Supervisado (KNN)</h2>
-    <p style="margin:0 0 .6rem;">Entrenado sobre {{ $supervised['records'] }} registros. Objetivo: {{ $supervised['objective'] }}.</p>
-    <p style="margin:0 0 .6rem;">Exactitud: <strong>{{ $supervised['accuracy'] }}%</strong>.</p>
-    <p style="font-size:.85rem; color:var(--text-dim); margin:0;">Matriz de confusión (resumen):
-        @php $labels = $supervised['labels']; $cm = $supervised['cm']; @endphp
-        @foreach($labels as $i => $lab)
-            <br>{{ $lab }} →
-            @foreach($labels as $j => $lab2)
-                {{ $cm[$i][$j] }}
-            @endforeach
-        @endforeach
-    </p>
-    <p style="margin-top:.8rem;">“Modelo supervisado (KNN) entrenado sobre {{ $supervised['records'] }} registros.”</p>
-@elseif(isset($supervised))
-    <div class="fade-in" style="margin-top:2rem; border:1px dashed rgba(255,255,255,.25); padding:1rem; border-radius:16px;">
-        <strong>Datos no disponibles:</strong> {{ $supervised['message'] ?? 'Sin detalles' }}
-    </div>
-@endif
 
 {{-- Mapa interactivo de puntos (Leaflet) --}}
 @if(isset($mapPoints) && count($mapPoints) > 0)
@@ -180,16 +136,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3 9-8 10-5-1-8-5-8-10V6l8-4z"/></svg>
             TLS/SMTP
         </div>
-        <div class="tech-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-            IoT Sensors
-        </div>
     </div>
 </div>
 
 <div class="cta-section fade-in" style="animation-delay:.25s;">
     <h2 style="background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">¿Listo para conducir más seguro?</h2>
-    <p>Únete a la plataforma que combina datos en tiempo real con inteligencia artificial para proteger cada trayecto.</p>
+    <p>Únete a la plataforma que combina datos biométricos en tiempo real con geolocalización para proteger cada trayecto.</p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;">
         <a href="{{ route('register') }}" class="btn">Crear cuenta gratuita</a>
         <a href="{{ route('contact') }}" class="btn btn-outline">Contáctanos</a>

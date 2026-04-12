@@ -207,11 +207,107 @@
                 <span style="display:block;font-size:.7rem;margin-top:.4rem;">Horario: Lun-Vie 9:00-18:00</span>
             </div>
         </div>
-        <div class="footer-copy">&copy; {{ date('Y') }} SIAC. Todos los derechos reservados.</div>
+    <div class="footer-copy">&copy; {{ date('Y') }} SIAC. Todos los derechos reservados.</div>
     </footer>
 
-    <!-- Service Worker Registration for PWA -->
+    <!-- PWA: Offline Status Banner -->
+    <div id="offline-banner" style="display:none; position:fixed; top:0; left:0; right:0; background:var(--secondary); color:#000; text-align:center; padding:.8rem; z-index:9999; font-weight:700; box-shadow:0 4px 15px rgba(0,0,0,0.5); border-bottom:2px solid var(--accent-alt);">
+        ⚠️ MODO OFFLINE: Estás viendo datos guardados. Conéctate para biometría en vivo.
+    </div>
+
+    <!-- PWA: Custom Install Button (Bottom Right) -->
+    <button id="pwa-install-btn" style="display:none; position:fixed; bottom:30px; right:30px; background:var(--accent); color:#000; border:none; border-radius:30px; padding:1rem 1.5rem; font-weight:700; font-size:1rem; box-shadow:0 12px 30px rgba(0,0,0,0.6); cursor:pointer; z-index:9999; align-items:center; gap:.8rem; border:2px solid var(--accent-alt); transition:transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Instalar SIAC</span>
+    </button>
+
+    <!-- Service Worker and PWA Logic -->
     <script>
+      let deferredPrompt;
+      const installBtn = document.getElementById('pwa-install-btn');
+      const offlineBanner = document.getElementById('offline-banner');
+
+      // 0. Base de Datos Local (IndexedDB)
+      const dbRequest = indexedDB.open('siac_offline', 1);
+      dbRequest.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('registrations')) {
+          db.createObjectStore('registrations', { keyPath: 'id', autoIncrement: true });
+        }
+      };
+
+      // 1. Manejo de Instalación
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'flex';
+      });
+
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        installBtn.style.transform = 'scale(0.95)';
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') installBtn.style.display = 'none';
+        deferredPrompt = null;
+      });
+
+      // 2. Manejo de Conectividad y Sincronización Automática
+      async function syncRegistrations() {
+        if (!navigator.onLine) return;
+        
+        const db = await new Promise((resolve) => {
+          const req = indexedDB.open('siac_offline', 1);
+          req.onsuccess = () => resolve(req.result);
+        });
+
+        const tx = db.transaction('registrations', 'readonly');
+        const store = tx.objectStore('registrations');
+        const pending = await new Promise((resolve) => {
+          const req = store.getAll();
+          req.onsuccess = () => resolve(req.result);
+        });
+
+        if (pending.length > 0) {
+          console.log(`PWA: Sincronizando ${pending.length} registros pendientes...`);
+          for (const data of pending) {
+            try {
+              const response = await fetch('{{ route("register.perform") }}', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify(data.formData)
+              });
+
+              if (response.ok) {
+                const deleteTx = db.transaction('registrations', 'readwrite');
+                deleteTx.objectStore('registrations').delete(data.id);
+                console.log('PWA: Registro sincronizado exitosamente.');
+              }
+            } catch (err) {
+              console.error('PWA: Error al sincronizar:', err);
+            }
+          }
+        }
+      }
+
+      function updateOnlineStatus() {
+        if (navigator.onLine) {
+          offlineBanner.style.display = 'none';
+          syncRegistrations(); // Sincronizar automáticamente al volver online
+        } else {
+          offlineBanner.style.display = 'block';
+        }
+      }
+
+      window.addEventListener('online',  updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+      updateOnlineStatus();
+
+      // 3. Registro de Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('/sw.js').then(function(registration) {
@@ -221,9 +317,8 @@
           });
         });
       }
-    </script>
-    <!-- Reveal-on-scroll Script -->
-    <script>
+
+      // 4. Reveal-on-scroll Script
       document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
