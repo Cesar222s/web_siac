@@ -100,7 +100,7 @@
         </div>
         <div class="chart-box">
             <h2 style="margin:0 0 1rem; font-size:1.3rem;">Recomendaciones</h2>
-            <p style="color:var(--text-dim); margin-bottom:1.5rem; font-size:.9rem;">Basadas en análisis predictivo</p>
+            <p style="color:var(--text-dim); margin-bottom:1.5rem; font-size:.9rem;">Basadas en análisis de frecuencia cardíaca y fatiga</p>
             <div class="risk-list">
                 @foreach($riskAnalysis['recommendations'] as $index => $rec)
                 <div class="risk-item">
@@ -125,8 +125,8 @@
                 <div style="font-size:.85rem; color:var(--text-dim); line-height:1.6;">Cálculo de promedios, desviación estándar y valores atípicos</div>
             </div>
             <div style="background:rgba(255,95,170,.08); border:1px solid rgba(255,95,170,.2); border-radius:10px; padding:1.2rem;">
-                <div style="font-weight:600; color:var(--secondary); margin-bottom:.5rem;">Machine Learning</div>
-                <div style="font-size:.85rem; color:var(--text-dim); line-height:1.6;">Predicción de riesgos basada en patrones históricos</div>
+                <div style="font-weight:600; color:var(--secondary); margin-bottom:.5rem;">Análisis Biométrico</div>
+                <div style="font-size:.85rem; color:var(--text-dim); line-height:1.6;">Predicción de riesgos basada en patrones de pulso y movimiento corporal</div>
             </div>
             <div style="background:rgba(76,175,80,.08); border:1px solid rgba(76,175,80,.2); border-radius:10px; padding:1.2rem;">
                 <div style="font-weight:600; color:#10B981; margin-bottom:.5rem;">Visualización de Datos</div>
@@ -226,8 +226,8 @@
 
     <!-- MACHINE LEARNING ANALYSIS -->
     <div class="chart-box fade-in" style="animation-delay:.4s; margin-top:2rem; background:linear-gradient(135deg,rgba(125,91,255,.05),rgba(45,232,255,.05)); border:2px solid rgba(125,91,255,.3);">
-        <h2 style="margin:0 0 .5rem; font-size:1.6rem;">🤖 Análisis con Machine Learning</h2>
-        <p style="color:var(--text-dim); margin-bottom:2rem; font-size:.9rem;">Algoritmos aplicados: K-Means Clustering, K-Nearest Neighbors (k-NN), Feature Importance</p>
+        <h2 style="margin:0 0 .5rem; font-size:1.6rem;">📊 Análisis Biométrico Especializado</h2>
+        <p style="color:var(--text-dim); margin-bottom:2rem; font-size:.9rem;">Algoritmos: Procesamiento de Señal Wear OS, K-Means Clustering y Segmentación de Riesgo BPM</p>
 
         <!-- K-Means Clustering Results -->
         <div style="background:rgba(255,255,255,.02); border-radius:12px; padding:1.5rem; margin-bottom:2rem;">
