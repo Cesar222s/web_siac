@@ -1,14 +1,13 @@
 @extends('layouts.main')
 @section('title','Registro')
 @section('content')
-<div class="card fade-in glow reveal" style="max-width:560px; margin:0 auto; position:relative; overflow:visible;">
-    <div style="position:absolute; top:-70px; left:-70px; width:220px; height:220px; background:radial-gradient(circle, rgba(245,158,11,.3), transparent 70%); filter:blur(55px); z-index:-1;"></div>
-    <div style="text-align:center; margin-bottom:2rem;">
-        <div style="display:inline-flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/auth-security.svg') }}" alt="Seguridad" style="width:120px; height:120px;" class="float">
+<div class="card fade-in reveal" style="max-width:600px; margin:0 auto; padding: 4rem 3rem;">
+    <div style="text-align:center; margin-bottom:3rem;">
+        <div style="display:inline-flex; align-items:center; justify-content:center; margin-bottom:1.5rem;">
+            <img src="{{ asset('images/auth-security.svg') }}" alt="Seguridad" style="width:100px; height:100px;" class="float">
         </div>
-        <h1 style="margin:0; font-size:clamp(1.7rem,2rem,2.2rem); background:linear-gradient(120deg,var(--secondary),var(--primary)); -webkit-background-clip:text; background-clip:text; color:transparent;">Crear cuenta</h1>
-        <p style="color:var(--text-dim); margin:.5rem 0 0; font-size:.95rem;">Únete a SIAC y descubre una nueva forma de conducir</p>
+        <h1 style="margin:0; font-size:2.4rem; font-weight:800; color:var(--text); letter-spacing:-0.03em;">Crear cuenta</h1>
+        <p style="color:var(--text-dim); margin:.5rem 0 0; font-size:1.1rem;">Protección y seguridad para cada trayecto</p>
     </div>
     <form action="{{ route('register.perform') }}" method="POST">
         @csrf
@@ -34,24 +33,21 @@
             <input type="password" name="password" id="password" placeholder="Ej: MiClave123" required>
             @error('password')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
             
-            <div id="password-requirements" style="margin-top:.8rem; padding:.9rem; background:rgba(99,102,241,.08); border:1px solid rgba(99,102,241,.2); border-radius:12px; font-size:.8rem;">
-                <div style="margin-bottom:.5rem; font-weight:600; color:var(--text); display:flex; align-items:center; gap:.4rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px; height:16px;">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    </svg>
-                    Requisitos de seguridad:
+            <div id="password-requirements" style="margin-top:1rem; padding:1.2rem; background:var(--surface-alt); border:1px solid var(--border); border-radius:12px; font-size:.85rem;">
+                <div style="margin-bottom:.8rem; font-weight:700; color:var(--text); display:flex; align-items:center; gap:.5rem;">
+                    Seguridad:
                 </div>
-                <div id="req-length" class="password-req" style="display:flex; align-items:center; gap:.5rem; padding:.3rem 0; color:var(--text-dim); transition:all .3s ease;">
+                <div id="req-length" class="password-req" style="display:flex; align-items:center; gap:.5rem; padding:.2rem 0; color:var(--text-dim);">
                     <span class="req-icon">○</span>
                     <span>Mínimo 8 caracteres</span>
                 </div>
-                <div id="req-uppercase" class="password-req" style="display:flex; align-items:center; gap:.5rem; padding:.3rem 0; color:var(--text-dim); transition:all .3s ease;">
+                <div id="req-uppercase" class="password-req" style="display:flex; align-items:center; gap:.5rem; padding:.2rem 0; color:var(--text-dim);">
                     <span class="req-icon">○</span>
-                    <span>Al menos una mayúscula (A-Z)</span>
+                    <span>Al menos una mayúscula</span>
                 </div>
-                <div id="req-number" class="password-req" style="display:flex; align-items:center; gap:.5rem; padding:.3rem 0; color:var(--text-dim); transition:all .3s ease;">
+                <div id="req-number" class="password-req" style="display:flex; align-items:center; gap:.5rem; padding:.2rem 0; color:var(--text-dim);">
                     <span class="req-icon">○</span>
-                    <span>Al menos un número (0-9)</span>
+                    <span>Al menos un número</span>
                 </div>
             </div>
         </div>
@@ -60,37 +56,7 @@
             <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repite tu contraseña" required>
             <small id="password-match" style="display:none; margin-top:.5rem; font-size:.8rem;"></small>
         </div>
-        <div style="margin:1.5rem 0; border-top:1px solid var(--border);"></div>
-        <h3>Perfil de riesgo de conducción</h3>
-        <div style="display:grid; gap:1.3rem; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); margin-top:.6rem;">
-            <div class="group">
-                <label for="driver_age">Edad del conductor</label>
-                <input type="number" name="driver_age" id="driver_age" value="{{ old('driver_age') }}" placeholder="Ej: 35" min="16" max="90" required>
-                @error('driver_age')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
-            </div>
-            <div class="group">
-                <label for="experience_years">Años de experiencia</label>
-                <input type="number" name="experience_years" id="experience_years" value="{{ old('experience_years') }}" placeholder="Ej: 10" min="0" max="70" required>
-                @error('experience_years')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
-            </div>
-        </div>
-        <div class="group">
-            <label for="usual_location">Ubicación habitual (Estado/Ciudad)</label>
-            <input type="text" name="usual_location" id="usual_location" value="{{ old('usual_location') }}" placeholder="Ej: Texas, Houston" required>
-            @error('usual_location')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
-        </div>
-        <div class="group">
-            <label for="usual_hours">Horarios de uso del vehículo</label>
-            <input type="text" name="usual_hours" id="usual_hours" value="{{ old('usual_hours') }}" placeholder="06:00-09:00,18:00" pattern="^\s*(?:([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]|([01]?[0-9]|2[0-3]):[0-5][0-9])\s*(?:,\s*(?:([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]|([01]?[0-9]|2[0-3]):[0-5][0-9]))*\s*$" title="Usa rangos u horas en formato 24h: Ej. 06:00-09:00,18:00" required />
-            <small style="color:var(--text-dim)">Formato estricto: rangos u horas 24h separados por coma. Ejemplo: <code>06:00-09:00,18:00</code></small>
-            @error('usual_hours')<small style="color:var(--danger); font-size:.75rem; display:block; margin-top:.3rem;">{{ $message }}</small>@enderror
-        </div>
-        <button class="btn glow" style="width:100%; font-size:1rem; padding:1.1rem; margin-top:.8rem;">
-            <span style="display:flex; align-items:center; justify-content:center; gap:.6rem;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px; height:20px;"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-                Crear cuenta
-            </span>
-        </button>
+        <button class="btn" style="width:100%; padding:1.1rem; margin-top:2rem; font-weight:800;">Crear cuenta</button>
     </form>
     <div style="margin-top:1.8rem; text-align:center; padding-top:1.5rem; border-top:1px solid var(--border);">
         <p style="color:var(--text-dim); font-size:.9rem;">¿Ya tienes cuenta? <a class="btn-link" href="{{ route('login') }}">Inicia sesión</a></p>
@@ -167,12 +133,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.opacity = '0';
             setTimeout(() => {
                 this.innerHTML = `
-                    <div style="text-align:center; padding:2rem; background:rgba(16,185,129,.1); border:1px solid var(--success); border-radius:16px;" class="fade-in">
-                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--success)" stroke-width="2" style="margin-bottom:1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <h2 style="color:var(--success); margin:0 0 .5rem;">¡Perfil Guardado!</h2>
-                        <p style="color:var(--text); font-size:.95rem; margin-bottom:1.5rem;">Te has registrado en modo offline. Tus datos se enviarán automáticamente en cuanto recuperes la conexión.</p>
-                        <div style="background:rgba(255,255,255,.05); padding:.8rem; border-radius:10px; font-size:.8rem; color:var(--text-dim);">
-                            🔄 Sincronización pendiente detectada
+                    <div style="text-align:center; padding:3rem 2rem; background:#f0fdf4; border:1px solid #16a34a; border-radius:24px;" class="fade-in">
+                        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#16a34a" stroke-width="2.5" style="margin-bottom:1.5rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <h2 style="color:#166534; margin:0 0 1rem; font-weight:800;">¡Perfil Guardado!</h2>
+                        <p style="color:#166534; font-size:1.1rem; margin-bottom:2rem;">Te has registrado localmente. Tus datos se enviarán cuando recuperes la conexión.</p>
+                        <div style="background:rgba(22,163,74,0.1); padding:1rem; border-radius:12px; font-size:.9rem; color:#166534; font-weight:600;">
+                            🔄 Sincronización automática activa
                         </div>
                     </div>
                 `;

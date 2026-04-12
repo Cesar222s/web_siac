@@ -1,14 +1,13 @@
 @extends('layouts.main')
 @section('title','Login')
 @section('content')
-<div class="card fade-in glow reveal" style="max-width:520px; margin:0 auto; position:relative; overflow:visible;">
-    <div style="position:absolute; top:-60px; right:-60px; width:200px; height:200px; background:radial-gradient(circle, rgba(99,102,241,.35), transparent 70%); filter:blur(50px); z-index:-1;"></div>
-    <div style="text-align:center; margin-bottom:2rem;">
-        <div style="display:inline-flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/auth-security.svg') }}" alt="Seguridad" style="width:120px; height:120px;" class="float">
+<div class="card fade-in reveal" style="max-width:500px; margin:0 auto; padding: 4rem 3rem;">
+    <div style="text-align:center; margin-bottom:3rem;">
+        <div style="display:inline-flex; align-items:center; justify-content:center; margin-bottom:1.5rem;">
+            <img src="{{ asset('images/auth-security.svg') }}" alt="Seguridad" style="width:100px; height:100px;" class="float">
         </div>
-        <h1 style="margin:0; font-size:clamp(1.7rem,2rem,2.2rem); background:linear-gradient(120deg,var(--primary),var(--secondary)); -webkit-background-clip:text; background-clip:text; color:transparent;">Bienvenido de nuevo</h1>
-        <p style="color:var(--text-dim); margin:.5rem 0 0; font-size:.95rem;">Ingresa tus credenciales para continuar</p>
+        <h1 style="margin:0; font-size:2.2rem; font-weight:800; color:var(--text); letter-spacing:-0.03em;">Bienvenido</h1>
+        <p style="color:var(--text-dim); margin:.5rem 0 0; font-size:1rem;">Ingresa tus credenciales para continuar</p>
     </div>
     <form action="{{ route('login.perform') }}" method="POST">
         @csrf
@@ -29,7 +28,7 @@
             </label>
             <a href="{{ route('password.request') }}" class="btn-link" style="font-size:.82rem;">¿Olvidaste tu contraseña?</a>
         </div>
-        <button class="btn glow" style="width:100%; font-size:1rem; padding:1.1rem;">Iniciar sesión</button>
+        <button class="btn" style="width:100%; padding:1.1rem; font-weight:800;">Iniciar sesión</button>
     </form>
     <div style="margin-top:1.8rem; text-align:center; padding-top:1.5rem; border-top:1px solid var(--border);">
         <p style="color:var(--text-dim); font-size:.9rem;">¿No tienes cuenta? <a class="btn-link" href="{{ route('register') }}">Crear cuenta</a></p>

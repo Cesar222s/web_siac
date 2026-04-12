@@ -2,36 +2,32 @@
 @section('title','Inicio')
 @section('content')
 <style>
-    .stats-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.8rem; margin:3rem 0;}
-    .stat-card {background:linear-gradient(135deg,rgba(29,39,56,.85),rgba(38,52,74,.5)); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:1.8rem 1.5rem; text-align:center; position:relative; overflow:hidden; transition:.3s;}
-    .stat-card:before {content:''; position:absolute; top:-50%; right:-30%; width:200px; height:200px; background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%); filter:blur(25px);}
-    .stat-card .stat-number {font-size:2.8rem; font-weight:700; background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; margin:.5rem 0; position:relative; z-index:1;}
-    .stat-card .stat-label {font-size:.85rem; color:var(--text-dim); letter-spacing:.08em; position:relative; z-index:1;}
-    .stat-card:hover {transform:translateY(-4px); box-shadow:0 20px 45px -15px rgba(99,102,241,.4);}
-    .tech-stack {display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:2.5rem 0;}
-    .tech-badge {background:var(--surface-soft); padding:.65rem 1.2rem; border-radius:25px; font-size:.82rem; border:1px solid rgba(255,255,255,.06); display:flex; align-items:center; gap:.5rem; transition:.25s;}
-    .tech-badge svg {width:18px; height:18px; color:var(--accent);}
-    .tech-badge:hover {transform:scale(1.05); border-color:var(--accent); box-shadow:0 8px 20px -8px rgba(99,102,241,.5);}
-    .cta-section {background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(16,185,129,.1)); border:1px solid rgba(99,102,241,.2); border-radius:24px; padding:3rem 2.5rem; text-align:center; margin:4rem 0; position:relative; overflow:hidden;}
-    .cta-section:before {content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%, rgba(245,158,11,.15), transparent 60%); filter:blur(40px);}
-    .cta-section h2 {font-size:2rem; margin-bottom:1rem; position:relative; z-index:1;}
-    .cta-section p {font-size:1.05rem; color:var(--text-dim); margin-bottom:2rem; position:relative; z-index:1;}
-    @media (max-width:780px){.stats-grid{grid-template-columns:repeat(2,1fr); gap:1.2rem;} .stat-card .stat-number{font-size:2.2rem;}}
+    .stats-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem; margin:4rem 0;}
+    .stat-card {background:#fff; border:1px solid var(--border); border-radius:18px; padding:2rem; text-align:center; transition:var(--transition); box-shadow:var(--shadow-elev);}
+    .stat-card .stat-number {font-size:2.8rem; font-weight:800; color:var(--primary); margin:0.5rem 0;}
+    .stat-card .stat-label {font-size:0.75rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em;}
+    .stat-card:hover {transform:translateY(-8px); border-color:var(--primary); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05);}
+    
+    .tech-stack {display:flex; flex-wrap:wrap; gap:0.8rem; justify-content:center; margin:3rem 0;}
+    .tech-badge {background:#fff; padding:.6rem 1.2rem; border-radius:14px; font-size:.85rem; font-weight:600; border:1px solid var(--border); display:flex; align-items:center; gap:.6rem; transition:.2s; color:var(--text-dim);}
+    .tech-badge svg {width:18px; height:18px; color:var(--primary);}
+    .tech-badge:hover {border-color:var(--primary); color:var(--text); transform:translateY(-2px);}
+    
+    .cta-section {background:var(--primary); border-radius:24px; padding:4rem 2rem; text-align:center; margin:5rem 0; color:#fff;}
+    .cta-section h2 {font-size:2.2rem; font-weight:800; margin-bottom:1rem; color:#fff;}
+    .cta-section p {font-size:1.1rem; color:rgba(255,255,255,0.9); margin-bottom:2.5rem; max-width:600px; margin-left:auto; margin-right:auto;}
+    @media (max-width:780px){.stats-grid{grid-template-columns:1fr;}}
 </style>
-<div class="hero fade-in glow reveal" style="position:relative; overflow:hidden;">
-    <div style="position:absolute; top:20px; right:30px; width:180px; height:180px; background:radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); animation:float 8s ease-in-out infinite;"></div>
-    <div style="position:absolute; bottom:30px; left:40px; width:220px; height:220px; background:radial-gradient(circle, rgba(245,158,11,.12) 0%, transparent 70%); animation:float 10s ease-in-out infinite reverse;"></div>
-    <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
-        <img src="{{ asset('images/logo.svg') }}" alt="SIAC Logo" style="width:150px; height:150px; position:relative; z-index:1;" class="float" loading="eager">
+<div class="hero fade-in reveal">
+    <div style="display:flex; justify-content:center; margin-bottom:2rem;">
+        <img src="{{ asset('images/logo.svg') }}" alt="SIAC Logo" style="width:120px; height:120px;" class="float" loading="eager">
     </div>
-    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC</h1>
-    <p style="position:relative; z-index:1; font-size:1.12rem;">Monitoreo de **frecuencia cardíaca (BPM)** y niveles de actividad desde tu reloj inteligente para detectar fatiga y enviar **alertas precisas con GPS** a tus contactos.</p>
-    <div class="actions" style="position:relative; z-index:1;">
-        <a href="{{ route('about') }}" class="btn btn-secondary">Conocer más</a>
+    <h1>Asistencia Inteligente <br><span style="color:var(--primary)">en Conducción</span></h1>
+    <p>Monitoreo de frecuencia cardíaca y actividad en tiempo real para un viaje más seguro y protegido.</p>
+    <div class="actions" style="justify-content:center;">
         <a href="{{ route('register') }}" class="btn">Empezar ahora</a>
-        <a href="{{ route('login') }}" class="btn-outline">Acceso</a>
+        <a href="{{ route('about') }}" class="btn btn-outline">Saber más</a>
     </div>
-    <img src="{{ asset('images/hero-car.svg') }}" alt="Vehículo" style="position:absolute;bottom:-50px;right:-50px;opacity:.15;width:500px;height:auto;" class="float" loading="lazy">
 </div>
 
 <div class="stats-grid fade-in reveal" style="animation-delay:.1s;">
@@ -57,9 +53,9 @@
 
 {{-- Mapa interactivo de puntos (Leaflet) --}}
 @if(isset($mapPoints) && count($mapPoints) > 0)
-<div class="fade-in" style="margin-top:2rem; background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(99,102,241,.12)); border:1px solid rgba(16,185,129,.3); padding:1.5rem; border-radius:24px;">
-        <h2 style="margin:0 0 .8rem;">Mapa de Incidencias</h2>
-        <p style="margin:0 0 1rem; font-size:.95rem; color:var(--text-dim);">Visualiza zonas con mayor densidad de eventos; útil para identificar horas pico de riesgo y optimizar alertas.</p>
+<div class="fade-in" style="margin-top:4rem; background:#fff; border:1px solid var(--border); padding:2rem; border-radius:24px; box-shadow:var(--shadow-elev);">
+        <h2 style="margin:0 0 1rem; font-weight:800;">Mapa de Riesgos</h2>
+        <p style="margin:0 0 2rem; font-size:1rem; color:var(--text-dim);">Visualización de zonas con mayor frecuencia de alertas detectadas en tiempo real.</p>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4QjV7g2W9SgZCkPWqsK0p12uglfL74E8JQvM2x3GHo=" crossorigin=""/>
         <div id="siac-map" style="height:460px; border-radius:16px; border:1px solid rgba(99,102,241,.35);"></div>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCfXDiFk9G2zGx2u3VZ8GZp3ZaLx3bVQxZ9M4x3E=" crossorigin=""></script>
@@ -139,12 +135,12 @@
     </div>
 </div>
 
-<div class="cta-section fade-in" style="animation-delay:.25s;">
-    <h2 style="background:linear-gradient(120deg,var(--primary),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">¿Listo para conducir más seguro?</h2>
-    <p>Únete a la plataforma que combina datos biométricos en tiempo real con geolocalización para proteger cada trayecto.</p>
-    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;">
-        <a href="{{ route('register') }}" class="btn">Crear cuenta gratuita</a>
-        <a href="{{ route('contact') }}" class="btn btn-outline">Contáctanos</a>
+<div class="cta-section fade-in">
+    <h2>¿Listo para conducir seguro?</h2>
+    <p>Únete a la plataforma que protege y monitorea cada trayecto de forma inteligente con biometría avanzada.</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="{{ route('register') }}" class="btn" style="background:#fff; color:var(--primary);">Crear cuenta</a>
+        <a href="{{ route('contact') }}" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4); color:#fff; background:transparent;">Contáctanos</a>
     </div>
 </div>
 @endsection
