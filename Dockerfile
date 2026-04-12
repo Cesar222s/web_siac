@@ -44,8 +44,8 @@ COPY --from=vendor /app/vendor ./vendor
 COPY --from=frontend /app/public/build ./public/build
 
 # Nginx configuration
-RUN mkdir -p /run/nginx
-COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
+RUN mkdir -p /run/nginx /etc/nginx/http.d && rm -f /etc/nginx/http.d/default.conf
+COPY ./deploy/nginx.conf /etc/nginx/http.d/default.conf
 
 # Supervisor configuration
 COPY ./deploy/supervisord.conf /etc/supervisord.conf
