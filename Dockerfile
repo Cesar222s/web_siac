@@ -65,7 +65,6 @@ ENV APP_ENV=production \
     PHP_OPCACHE_INTERNED_STRINGS_BUFFER=16
 
 EXPOSE 80
-USER www-data
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
