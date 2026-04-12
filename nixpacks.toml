@@ -1,9 +1,8 @@
 [variables]
-    PHP_EXTENSION_MONGODB = "1"
+    NIXPACKS_PHP_EXTENSIONS = "mongodb"
 
 [phases.setup]
     nixPkgs = ["...", "php82Extensions.mongodb"]
 
 [phases.install]
-    cmds = ["composer install", "php -m | grep mongodb"]
-
+    cmds = ["composer install", "php -m"]
