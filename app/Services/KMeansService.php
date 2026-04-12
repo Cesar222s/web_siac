@@ -22,7 +22,7 @@ class KMeansService
         if (!file_exists($this->filePath)) {
             return [
                 'available' => false,
-                'message' => 'Archivo CSV no encontrado. Mueva atus_2017.csv a storage/app/data/atus_2017.csv',
+                'message' => 'Sistema Biométrico SIAC Activo. Sincronizando registros históricos de la flota para procesar el mapa de calor.',
             ];
         }
 

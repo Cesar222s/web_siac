@@ -1,8 +1,11 @@
-const CACHE_NAME = 'siac-cache-v2';
+const CACHE_NAME = 'siac-cache-v3';
 const urlsToCache = [
   '/',
   '/images/logo.svg',
-  '/favicon.svg'
+  '/favicon.svg',
+  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap',
+  '/images/hero-car.svg',
+  '/images/road-scene.svg'
 ];
 
 self.addEventListener('install', event => {
