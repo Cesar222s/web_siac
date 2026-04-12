@@ -18,20 +18,20 @@
     .cta-section p {font-size:1.05rem; color:var(--text-dim); margin-bottom:2rem; position:relative; z-index:1;}
     @media (max-width:780px){.stats-grid{grid-template-columns:repeat(2,1fr); gap:1.2rem;} .stat-card .stat-number{font-size:2.2rem;}}
 </style>
-<div class="hero fade-in glow reveal" style="position:relative;">
-    <div style="position:absolute; top:20px; right:30px; width:180px; height:180px; background:radial-gradient(circle, rgba(99,102,241,.3), transparent 70%); filter:blur(40px); animation:float 8s ease-in-out infinite;"></div>
-    <div style="position:absolute; bottom:30px; left:40px; width:220px; height:220px; background:radial-gradient(circle, rgba(245,158,11,.25), transparent 70%); filter:blur(45px); animation:float 10s ease-in-out infinite reverse;"></div>
+<div class="hero fade-in glow reveal" style="position:relative; overflow:hidden;">
+    <div style="position:absolute; top:20px; right:30px; width:180px; height:180px; background:radial-gradient(circle, rgba(99,102,241,.15) 0%, transparent 70%); animation:float 8s ease-in-out infinite;"></div>
+    <div style="position:absolute; bottom:30px; left:40px; width:220px; height:220px; background:radial-gradient(circle, rgba(245,158,11,.12) 0%, transparent 70%); animation:float 10s ease-in-out infinite reverse;"></div>
     <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
-        <img src="{{ asset('images/logo.svg') }}" alt="SIAC Logo" style="width:150px; height:150px; position:relative; z-index:1;" class="float">
+        <img src="{{ asset('images/logo.svg') }}" alt="SIAC Logo" style="width:150px; height:150px; position:relative; z-index:1;" class="float" loading="eager">
     </div>
-    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC: Inteligencia al Volante</h1>
-    <p style="position:relative; z-index:1; font-size:1.12rem;">Monitoreo de **fatiga con IA**, alertas en **Smartwatch** y asistencia avanzada para una conducción sin riesgos.</p>
+    <h1 style="margin:0 0 .85rem; position:relative; z-index:1;">SIAC: Seguridad Biométrica al Volante</h1>
+    <p style="position:relative; z-index:1; font-size:1.12rem;">Monitoreo de **frecuencia cardíaca (BPM)** y niveles de actividad desde tu reloj inteligente para detectar fatiga y enviar **alertas precisas con GPS** a tus contactos.</p>
     <div class="actions" style="position:relative; z-index:1;">
-        <a href="{{ route('about') }}" class="btn btn-secondary">Explorar tecnología</a>
+        <a href="{{ route('about') }}" class="btn btn-secondary">Conocer más</a>
         <a href="{{ route('register') }}" class="btn">Empezar ahora</a>
-        <a href="{{ route('login') }}" class="btn-outline">Acceso conductor</a>
+        <a href="{{ route('login') }}" class="btn-outline">Acceso</a>
     </div>
-    <img src="{{ asset('images/hero-car.svg') }}" alt="SIAC Sistema" style="position:absolute;bottom:-50px;right:-50px;opacity:.15;width:500px;height:auto;" class="float">
+    <img src="{{ asset('images/hero-car.svg') }}" alt="Vehículo" style="position:absolute;bottom:-50px;right:-50px;opacity:.15;width:500px;height:auto;" class="float" loading="lazy">
 </div>
 
 <div class="stats-grid fade-in reveal" style="animation-delay:.1s;">
@@ -44,12 +44,12 @@
         <div class="stat-label">LATENCIA DE ALERTAS</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">Wear OS</div>
-        <div class="stat-label">SYNC INTEGRAL</div>
+        <div class="stat-number">GPS</div>
+        <div class="stat-label">MAPEO DE RIESGO</div>
     </div>
     <div class="stat-card">
-        <div class="stat-number">IA</div>
-        <div class="stat-label">DETECCIÓN DE FATIGA</div>
+        <div class="stat-number">BPM</div>
+        <div class="stat-label">MONITOREO CARDÍACO</div>
     </div>
 </div>
 
@@ -129,31 +129,31 @@
 <div class="grid fade-in reveal" style="animation-delay:.15s;">
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/icon-monitor.svg') }}" alt="Monitoreo" style="width:80px; height:80px;">
+            <img src="{{ asset('images/icon-monitor.svg') }}" alt="Monitoreo" style="width:70px; height:70px;" loading="lazy">
         </div>
-        <h2>Análisis de Fatiga</h2>
-        <p>Algoritmos de visión artificial monitorean patrones oculares y bostezos para prevenir siniestros por somnolencia en tiempo real.</p>
+        <h2>Análisis Cardíaco</h2>
+        <p>Monitoriza tus pulsaciones por minuto (BPM) de forma continua con Wear OS para detectar signos tempranos de agotamiento extremo o sueño al volante.</p>
     </div>
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/icon-security.svg') }}" alt="Seguridad" style="width:80px; height:80px;">
+            <img src="{{ asset('images/icon-security.svg') }}" alt="Acelerómetro" style="width:70px; height:70px;" loading="lazy">
         </div>
-        <h2>Ecosistema Wearable</h2>
-        <p>Integración nativa con Smartwatches Wear OS. Siente una vibración táctil inmediata al detectar una proximidad crítica o fatiga severa.</p>
+        <h2>Detección de Relajación Inusual</h2>
+        <p>Detecta descensos bruscos en tu nivel de actividad corporal mientras conduces. Si los signos vitales disminuyen demasiado, se dispara un aviso.</p>
     </div>
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/icon-alert.svg') }}" alt="Alertas" style="width:80px; height:80px;">
+            <img src="{{ asset('images/icon-alert.svg') }}" alt="Alertas Automáticas" style="width:70px; height:70px;" loading="lazy">
         </div>
-        <h2>Zonas de Riesgo</h2>
-        <p>Clustering inteligente de datos históricos para identificar puntos ciegos y cruces peligrosos antes de que llegues a ellos.</p>
+        <h2>Alertas a tus Contactos</h2>
+        <p>Si sufres un incidente o no puedes responder, la aplicación enviará directamente mensajes de emergencia a tus personas de confianza (SMS).</p>
     </div>
     <div class="card tilt-hover">
         <div style="display:flex; align-items:center; justify-content:center; margin-bottom:1rem;">
-            <img src="{{ asset('images/icon-sensor.svg') }}" alt="Sensores" style="width:80px; height:80px;">
+            <img src="{{ asset('images/icon-sensor.svg') }}" alt="Mapeo GPS" style="width:70px; height:70px;" loading="lazy">
         </div>
-        <h2>Sensor Fusion IoT</h2>
-        <p>Combinación de sensores de proximidad ultrasónicos y cámaras para una cobertura perimetral de 360 grados en tu vehículo.</p>
+        <h2>Historial y Geolocalización</h2>
+        <p>Conoce exactamente dónde ocurrieron las alertas de fatiga pasada y obtén registros con fechas, horas y las coordenadas GPS exactas.</p>
     </div>
 </div>
 
