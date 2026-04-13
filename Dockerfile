@@ -23,7 +23,7 @@ WORKDIR /var/www/html
 # Install system packages and PHP extensions
 RUN apk add --no-cache \
     nginx supervisor bash git icu-dev libzip-dev oniguruma-dev libpng-dev libjpeg-turbo-dev freetype-dev \
-    shadow openssl curl
+    shadow openssl curl autoconf g++ make pkgconf re2c
 
 # PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
