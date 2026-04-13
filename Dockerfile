@@ -28,8 +28,8 @@ RUN apk add --no-cache \
 # PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install pdo pdo_mysql mbstring zip gd intl opcache
-# Optional MongoDB extension (comment out if not needed)
-RUN pecl install mongodb && docker-php-ext-enable mongodb || echo "MongoDB ext optional"
+# Instala la extensión MongoDB y detiene el build si falla
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 # Create non-root user (optional; keeping www-data)
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data || true
